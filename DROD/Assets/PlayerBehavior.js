@@ -165,5 +165,5 @@ function OnGUI ()
 {
 	GUI.skin = guiSkin;
 	GUI.color = Color.black;
-	GUI.Label (Rect (10, 10, 100, 40), "Health: " + hp);
+	GUI.Label (Rect (10, 10, 500, 40), "Health: " + hp);
 }
