@@ -1,3 +1,4 @@
+
 #pragma strict
 
 var target : Transform;

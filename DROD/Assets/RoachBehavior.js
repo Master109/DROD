@@ -20,49 +20,55 @@ function Start ()
 function Update ()
 {
 	if (!awoken)
-	{
-		var vector = transform.position;
-		for (var i = 0; i < awakeRadius; i ++)
-		{
-			if (vector.x - GameObject.Find("Player").transform.position.x > 0)
-			{
-				vector.x -= MOVE_DIST;
-				if (Physics.Raycast (Vector3(vector.x, 5, vector.z), Vector3.down, hit, 100.0) && hit.collider.gameObject.name == "Player Graphics")
-					awoken = true;
-			}
-			else if (vector.x - GameObject.Find("Player").transform.position.x < 0)
-			{
-				vector.x += MOVE_DIST;
-				if (Physics.Raycast (Vector3(vector.x, 5, vector.z), Vector3.down, hit, 100.0) && hit.collider.gameObject.name == "Player Graphics")
-					awoken = true;
-			}
-			if (vector.z - GameObject.Find("Player").transform.position.z > 0)
-			{
-				vector.z -= MOVE_DIST;
-				if (Physics.Raycast (Vector3(vector.x, 5, vector.z), Vector3.down, hit, 100.0) && hit.collider.gameObject.name == "Player Graphics")
-					awoken = true;
-			}
-			else if (vector.z - GameObject.Find("Player").transform.position.z < 0)
-			{
-				vector.z += MOVE_DIST;
-				if (Physics.Raycast (Vector3(vector.x, 5, vector.z), Vector3.down, hit, 100.0) && hit.collider.gameObject.name == "Player Graphics")
-					awoken = true;
-			}
-		}
 		return;
-	}
 	moveTimer ++;
 	if (moveTimer > moveRate)
 	{
-		if (transform.position.x - GameObject.Find("Player").transform.position.x > 0 && Physics.Raycast (Vector3(transform.position.x - MOVE_DIST, 5, transform.position.z), Vector3.down, hit, 100.0) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Cube" || hit.collider.gameObject.name == "Player Graphics"))
+		if (transform.position.x - GameObject.Find("Player Graphics").transform.position.x > 0 && Physics.Raycast (Vector3(transform.position.x - MOVE_DIST, 5, transform.position.z), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Cube" || hit.collider.gameObject.name == "Player Graphics"))
 			transform.position.x -= MOVE_DIST;
-		else if (transform.position.x - GameObject.Find("Player").transform.position.x < 0 && Physics.Raycast (Vector3(transform.position.x + MOVE_DIST, 5, transform.position.z), Vector3.down, hit, 100.0) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Cube" || hit.collider.gameObject.name == "Player Graphics"))
+		else if (transform.position.x - GameObject.Find("Player Graphics").transform.position.x < 0 && Physics.Raycast (Vector3(transform.position.x + MOVE_DIST, 5, transform.position.z), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Cube" || hit.collider.gameObject.name == "Player Graphics"))
 			transform.position.x += MOVE_DIST;
-		if (transform.position.z - GameObject.Find("Player").transform.position.z > 0 && Physics.Raycast (Vector3(transform.position.x, 5, transform.position.z - MOVE_DIST), Vector3.down, hit, 100.0) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Cube" || hit.collider.gameObject.name == "Player Graphics"))
+		if (transform.position.z - GameObject.Find("Player Graphics").transform.position.z > 0 && Physics.Raycast (Vector3(transform.position.x, 5, transform.position.z - MOVE_DIST), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Cube" || hit.collider.gameObject.name == "Player Graphics"))
 			transform.position.z -= MOVE_DIST;
-		else if (transform.position.z - GameObject.Find("Player").transform.position.z < 0 && Physics.Raycast (Vector3(transform.position.x, 5, transform.position.z + MOVE_DIST), Vector3.down, hit, 100.0) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Cube" || hit.collider.gameObject.name == "Player Graphics"))
+		else if (transform.position.z - GameObject.Find("Player Graphics").transform.position.z < 0 && Physics.Raycast (Vector3(transform.position.x, 5, transform.position.z + MOVE_DIST), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Cube" || hit.collider.gameObject.name == "Player Graphics"))
 			transform.position.z += MOVE_DIST;
 		moveTimer = 0;
+	}
+}
+
+function CheckForPlayer ()
+{
+	var vector = transform.position;
+	for (var i = 0; i < awakeRadius; i ++)
+	{
+		if (vector.x - GameObject.Find("Player Graphics").transform.position.x > 0)
+		{
+			vector.x -= MOVE_DIST;
+			if (vector.x == GameObject.Find("Player Graphics").transform.position.x && vector.z == GameObject.Find("Player Graphics").transform.position.z)
+				awoken = true;
+			return;
+		}
+		else if (vector.x - GameObject.Find("Player Graphics").transform.position.x < 0)
+		{
+			vector.x += MOVE_DIST;
+			if (vector.x == GameObject.Find("Player Graphics").transform.position.x && vector.z == GameObject.Find("Player Graphics").transform.position.z)
+				awoken = true;
+			return;
+		}
+		if (vector.z - GameObject.Find("Player Graphics").transform.position.z > 0)
+		{
+			vector.z -= MOVE_DIST;
+			if (vector.x == GameObject.Find("Player Graphics").transform.position.x && vector.z == GameObject.Find("Player Graphics").transform.position.z)
+				awoken = true;
+			return;
+		}
+		else if (vector.z - GameObject.Find("Player Graphics").transform.position.z < 0)
+		{
+			vector.z += MOVE_DIST;
+			if (vector.x == GameObject.Find("Player Graphics").transform.position.x && vector.z == GameObject.Find("Player Graphics").transform.position.z)
+				awoken = true;
+			return;
+		}
 	}
 }
 
