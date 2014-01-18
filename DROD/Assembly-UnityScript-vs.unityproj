@@ -45,12 +45,9 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\AlignObjects.js" />
-     <Compile Include="Assets\BulletBehavior.js" />
+     <Compile Include="Assets\EndZone.js" />
      <Compile Include="Assets\PlayerBehavior.js" />
-     <Compile Include="Assets\PlayerBehavior2.js" />
-     <Compile Include="Assets\RoachBehavior (2).js" />
      <Compile Include="Assets\RoachBehavior.js" />
-     <Compile Include="Assets\ShooterBehavior.js" />
      <Compile Include="Assets\Shrink.js" />
      <Compile Include="Assets\Standard Assets (Mobile)\Scripts\CameraRelativeControl.js" />
      <Compile Include="Assets\Standard Assets (Mobile)\Scripts\FirstPersonControl.js" />
@@ -64,9 +61,6 @@
      <Compile Include="Assets\Standard Assets (Mobile)\Scripts\SmoothFollow2D.js" />
      <Compile Include="Assets\Standard Assets (Mobile)\Scripts\ZoomCamera.js" />
      <Compile Include="Assets\Standard Assets (Mobile)\Scripts\tapcontrol.js" />
-     <Compile Include="Assets\SurvivalMode.js" />
-     <Compile Include="Assets\UnityObject2.js" />
-     <Compile Include="Assets\jquery.min.js" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Particle Shaders\Mobile Multiply Culled.shader" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Miscellaneous Shaders\Mobile Background.shader" />
      <None Include="Assets\Plugins\GameDraw\Shaders\HighlightTextured.shader" />

@@ -8,6 +8,7 @@ var firstFrame = true;
 var hasMoved = false;
 var hit : RaycastHit;
 var guiSkin : GUISkin;
+var guiSkin2 : GUISkin;
 var canZoom = true;
 var gos : GameObject[];
 
@@ -30,6 +31,9 @@ function Update ()
 		for (var go : GameObject in gos)
 			if (!go.GetComponent(RoachBehavior).awoken)
 				go.GetComponent(RoachBehavior).CheckForPlayer();
+		gos = GameObject.FindGameObjectsWithTag("EndZone");
+		for (var go : GameObject in gos)
+			go.GetComponent(EndZone).AreaChange();
 		if (firstFrame)
 		hasMoved = true;
 	}
@@ -42,6 +46,9 @@ function Update ()
 		for (var go : GameObject in gos)
 			if (!go.GetComponent(RoachBehavior).awoken)
 				go.GetComponent(RoachBehavior).CheckForPlayer();
+		gos = GameObject.FindGameObjectsWithTag("EndZone");
+		for (var go : GameObject in gos)
+			go.GetComponent(EndZone).AreaChange();
 		if (firstFrame)
 		hasMoved = true;
 	}
@@ -54,6 +61,9 @@ function Update ()
 		for (var go : GameObject in gos)
 			if (!go.GetComponent(RoachBehavior).awoken)
 				go.GetComponent(RoachBehavior).CheckForPlayer();
+		gos = GameObject.FindGameObjectsWithTag("EndZone");
+		for (var go : GameObject in gos)
+			go.GetComponent(EndZone).AreaChange();
 		if (firstFrame)
 		hasMoved = true;
 	}
@@ -66,6 +76,9 @@ function Update ()
 		for (var go : GameObject in gos)
 			if (!go.GetComponent(RoachBehavior).awoken)
 				go.GetComponent(RoachBehavior).CheckForPlayer();
+		gos = GameObject.FindGameObjectsWithTag("EndZone");
+		for (var go : GameObject in gos)
+			go.GetComponent(EndZone).AreaChange();
 		if (firstFrame)
 		hasMoved = true;
 	}
@@ -80,6 +93,9 @@ function Update ()
 		for (var go : GameObject in gos)
 			if (!go.GetComponent(RoachBehavior).awoken)
 				go.GetComponent(RoachBehavior).CheckForPlayer();
+		gos = GameObject.FindGameObjectsWithTag("EndZone");
+		for (var go : GameObject in gos)
+			go.GetComponent(EndZone).AreaChange();
 		if (firstFrame)
 		hasMoved = true;
 	}
@@ -94,6 +110,9 @@ function Update ()
 		for (var go : GameObject in gos)
 			if (!go.GetComponent(RoachBehavior).awoken)
 				go.GetComponent(RoachBehavior).CheckForPlayer();
+		gos = GameObject.FindGameObjectsWithTag("EndZone");
+		for (var go : GameObject in gos)
+			go.GetComponent(EndZone).AreaChange();
 		if (firstFrame)
 		hasMoved = true;
 	}
@@ -108,6 +127,9 @@ function Update ()
 		for (var go : GameObject in gos)
 			if (!go.GetComponent(RoachBehavior).awoken)
 				go.GetComponent(RoachBehavior).CheckForPlayer();
+		gos = GameObject.FindGameObjectsWithTag("EndZone");
+		for (var go : GameObject in gos)
+			go.GetComponent(EndZone).AreaChange();
 		if (firstFrame)
 		hasMoved = true;
 	}
@@ -122,6 +144,9 @@ function Update ()
 		for (var go : GameObject in gos)
 			if (!go.GetComponent(RoachBehavior).awoken)
 				go.GetComponent(RoachBehavior).CheckForPlayer();
+		gos = GameObject.FindGameObjectsWithTag("EndZone");
+		for (var go : GameObject in gos)
+			go.GetComponent(EndZone).AreaChange();
 		if (firstFrame)
 		hasMoved = true;
 	}
@@ -228,10 +253,19 @@ function Update ()
 	}
 	if (Input.GetAxis("Zoom") == 1 && canZoom)
 	{
-		if (!GameObject.Find("Camera").camera.enabled)
-			GameObject.Find("Camera").camera.enabled = true;
+		gos = GameObject.FindGameObjectsWithTag("MainCamera");
+		var go = GameObject.FindGameObjectWithTag("MainCamera");
+		for (var go2 : GameObject in gos)
+		{
+			if (Vector3.Distance(go2.transform.position, GameObject.Find("Player Graphics").transform.position) < Vector3.Distance(go.transform.position, GameObject.Find("Player Graphics").transform.position))
+				go = go2;
+			//else
+				//go2.camera.enabled = false;
+		}
+		if (!go.camera.enabled)
+			go.camera.enabled = true;
 		else
-			GameObject.Find("Camera").camera.enabled = false;
+			go.camera.enabled = false;
 		canZoom = false;
 	}
 	else if (Input.GetAxis("Zoom") == 0)
@@ -243,6 +277,7 @@ var scrollPosition : Vector2 = Vector2(Screen.width / 2, -Screen.height + 150);
 
 function OnGUI ()
 {
+	GUI.skin = guiSkin2;
 	if (firstFrame)
 	{
 		// An absolute-positioned example: We make a scrollview that has a really large client
@@ -258,7 +293,7 @@ function OnGUI ()
 		GUI.Box(Rect(0, 25, 725, 25), "You see that you are standing in a dense forest");
 		GUI.Box(Rect(0, 50, 725, 25), "Suddenly, without you telling it to, your body starts to move");
 		GUI.color = Color.green;
-		GUI.Box(Rect(0, 75, 725, 25), "Hold one of the 8 keys surrounding 'S' to move in that direction (pretend you are standing on the 'S' key)");
+		GUI.Box(Rect(0, 75, 725, 25), "Hold one of the 8 keys surrounding the '5' on the numpad to move in that direction (pretend you are standing on the '5')");
 		// End the scroll view that we began above.
 		GUI.EndScrollView ();
 		if (hasMoved)
@@ -275,7 +310,7 @@ function OnGUI ()
 		// by the last parameter to BeginScrollView.
 		//GUI.backgroundColor = Color.gray;
 		GUI.color = Color.green;
-		GUI.Box(Rect(0, 0, 725, 25), "Hold the left or right arrow key to rotate your sword");
+		GUI.Box(Rect(0, 0, 725, 25), "Hold 'Q' or 'W' to rotate your sword");
 		// End the scroll view that we began above.
 		GUI.EndScrollView ();
 	}

@@ -46,28 +46,28 @@ function CheckForPlayer ()
 			vector.x -= MOVE_DIST;
 			if (vector.x == GameObject.Find("Player Graphics").transform.position.x && vector.z == GameObject.Find("Player Graphics").transform.position.z)
 				awoken = true;
-			return;
+			Update();
 		}
 		else if (vector.x - GameObject.Find("Player Graphics").transform.position.x < 0)
 		{
 			vector.x += MOVE_DIST;
 			if (vector.x == GameObject.Find("Player Graphics").transform.position.x && vector.z == GameObject.Find("Player Graphics").transform.position.z)
 				awoken = true;
-			return;
+			Update();
 		}
 		if (vector.z - GameObject.Find("Player Graphics").transform.position.z > 0)
 		{
 			vector.z -= MOVE_DIST;
 			if (vector.x == GameObject.Find("Player Graphics").transform.position.x && vector.z == GameObject.Find("Player Graphics").transform.position.z)
 				awoken = true;
-			return;
+			Update();
 		}
 		else if (vector.z - GameObject.Find("Player Graphics").transform.position.z < 0)
 		{
 			vector.z += MOVE_DIST;
 			if (vector.x == GameObject.Find("Player Graphics").transform.position.x && vector.z == GameObject.Find("Player Graphics").transform.position.z)
 				awoken = true;
-			return;
+			Update();
 		}
 	}
 }
