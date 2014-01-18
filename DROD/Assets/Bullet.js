@@ -29,7 +29,7 @@ function OnTriggerStay (other : Collider)
 	if (other.gameObject.name == "Player Graphics")
 	{
 		Destroy(gameObject);
-		other.gameObject.GetComponent(PlayerBehavior).hp -= damage;
+		other.transform.parent.gameObject.GetComponent(PlayerBehavior).hp -= damage;
 	}
 	else if (other.gameObject.name == "Roach")
 	{
