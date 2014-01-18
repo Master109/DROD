@@ -1,9 +1,9 @@
 ﻿#pragma strict
 
-var hp = 3;
+var hp = 10;
 var MOVE_DIST = 6;
 var moveTimer = 0;
-var moveRate = 30;
+var moveRate = 100;
 var firstFrame = true;
 var hasMoved = false;
 var hit : RaycastHit;
@@ -29,8 +29,12 @@ function Update ()
 		moveTimer = 0;
 		gos = GameObject.FindGameObjectsWithTag("Enemy");
 		for (var go : GameObject in gos)
-			if (!go.GetComponent(RoachBehavior).awoken)
+		{
+			if (go.name == "Roach" && !go.GetComponent(RoachBehavior).awoken)
 				go.GetComponent(RoachBehavior).CheckForPlayer();
+			else if (go.name == "SkeletonArcher" && !go.GetComponent(SkeletonArcher).awoken)
+				go.GetComponent(SkeletonArcher).CheckForPlayer();
+		}
 		gos = GameObject.FindGameObjectsWithTag("EndZone");
 		for (var go : GameObject in gos)
 			go.GetComponent(EndZone).AreaChange();
@@ -44,8 +48,12 @@ function Update ()
 		moveTimer = 0;
 		gos = GameObject.FindGameObjectsWithTag("Enemy");
 		for (var go : GameObject in gos)
-			if (!go.GetComponent(RoachBehavior).awoken)
+		{
+			if (go.name == "Roach" && !go.GetComponent(RoachBehavior).awoken)
 				go.GetComponent(RoachBehavior).CheckForPlayer();
+			else if (go.name == "SkeletonArcher" && !go.GetComponent(SkeletonArcher).awoken)
+				go.GetComponent(SkeletonArcher).CheckForPlayer();
+		}
 		gos = GameObject.FindGameObjectsWithTag("EndZone");
 		for (var go : GameObject in gos)
 			go.GetComponent(EndZone).AreaChange();
@@ -59,8 +67,12 @@ function Update ()
 		moveTimer = 0;
 		gos = GameObject.FindGameObjectsWithTag("Enemy");
 		for (var go : GameObject in gos)
-			if (!go.GetComponent(RoachBehavior).awoken)
+		{
+			if (go.name == "Roach" && !go.GetComponent(RoachBehavior).awoken)
 				go.GetComponent(RoachBehavior).CheckForPlayer();
+			else if (go.name == "SkeletonArcher" && !go.GetComponent(SkeletonArcher).awoken)
+				go.GetComponent(SkeletonArcher).CheckForPlayer();
+		}
 		gos = GameObject.FindGameObjectsWithTag("EndZone");
 		for (var go : GameObject in gos)
 			go.GetComponent(EndZone).AreaChange();
@@ -74,8 +86,12 @@ function Update ()
 		moveTimer = 0;
 		gos = GameObject.FindGameObjectsWithTag("Enemy");
 		for (var go : GameObject in gos)
-			if (!go.GetComponent(RoachBehavior).awoken)
+		{
+			if (go.name == "Roach" && !go.GetComponent(RoachBehavior).awoken)
 				go.GetComponent(RoachBehavior).CheckForPlayer();
+			else if (go.name == "SkeletonArcher" && !go.GetComponent(SkeletonArcher).awoken)
+				go.GetComponent(SkeletonArcher).CheckForPlayer();
+		}
 		gos = GameObject.FindGameObjectsWithTag("EndZone");
 		for (var go : GameObject in gos)
 			go.GetComponent(EndZone).AreaChange();
@@ -91,8 +107,12 @@ function Update ()
 		moveTimer = 0;
 		gos = GameObject.FindGameObjectsWithTag("Enemy");
 		for (var go : GameObject in gos)
-			if (!go.GetComponent(RoachBehavior).awoken)
+		{
+			if (go.name == "Roach" && !go.GetComponent(RoachBehavior).awoken)
 				go.GetComponent(RoachBehavior).CheckForPlayer();
+			else if (go.name == "SkeletonArcher" && !go.GetComponent(SkeletonArcher).awoken)
+				go.GetComponent(SkeletonArcher).CheckForPlayer();
+		}
 		gos = GameObject.FindGameObjectsWithTag("EndZone");
 		for (var go : GameObject in gos)
 			go.GetComponent(EndZone).AreaChange();
@@ -108,8 +128,12 @@ function Update ()
 		moveTimer = 0;
 		gos = GameObject.FindGameObjectsWithTag("Enemy");
 		for (var go : GameObject in gos)
-			if (!go.GetComponent(RoachBehavior).awoken)
+		{
+			if (go.name == "Roach" && !go.GetComponent(RoachBehavior).awoken)
 				go.GetComponent(RoachBehavior).CheckForPlayer();
+			else if (go.name == "SkeletonArcher" && !go.GetComponent(SkeletonArcher).awoken)
+				go.GetComponent(SkeletonArcher).CheckForPlayer();
+		}
 		gos = GameObject.FindGameObjectsWithTag("EndZone");
 		for (var go : GameObject in gos)
 			go.GetComponent(EndZone).AreaChange();
@@ -125,8 +149,12 @@ function Update ()
 		moveTimer = 0;
 		gos = GameObject.FindGameObjectsWithTag("Enemy");
 		for (var go : GameObject in gos)
-			if (!go.GetComponent(RoachBehavior).awoken)
+		{
+			if (go.name == "Roach" && !go.GetComponent(RoachBehavior).awoken)
 				go.GetComponent(RoachBehavior).CheckForPlayer();
+			else if (go.name == "SkeletonArcher" && !go.GetComponent(SkeletonArcher).awoken)
+				go.GetComponent(SkeletonArcher).CheckForPlayer();
+		}
 		gos = GameObject.FindGameObjectsWithTag("EndZone");
 		for (var go : GameObject in gos)
 			go.GetComponent(EndZone).AreaChange();
@@ -142,8 +170,12 @@ function Update ()
 		moveTimer = 0;
 		gos = GameObject.FindGameObjectsWithTag("Enemy");
 		for (var go : GameObject in gos)
-			if (!go.GetComponent(RoachBehavior).awoken)
+		{
+			if (go.name == "Roach" && !go.GetComponent(RoachBehavior).awoken)
 				go.GetComponent(RoachBehavior).CheckForPlayer();
+			else if (go.name == "SkeletonArcher" && !go.GetComponent(SkeletonArcher).awoken)
+				go.GetComponent(SkeletonArcher).CheckForPlayer();
+		}
 		gos = GameObject.FindGameObjectsWithTag("EndZone");
 		for (var go : GameObject in gos)
 			go.GetComponent(EndZone).AreaChange();

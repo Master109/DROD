@@ -45,10 +45,12 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\AlignObjects.js" />
+     <Compile Include="Assets\Bullet.js" />
      <Compile Include="Assets\EndZone.js" />
      <Compile Include="Assets\PlayerBehavior.js" />
      <Compile Include="Assets\RoachBehavior.js" />
      <Compile Include="Assets\Shrink.js" />
+     <Compile Include="Assets\SkeletonArcher.js" />
      <Compile Include="Assets\Standard Assets (Mobile)\Scripts\CameraRelativeControl.js" />
      <Compile Include="Assets\Standard Assets (Mobile)\Scripts\FirstPersonControl.js" />
      <Compile Include="Assets\Standard Assets (Mobile)\Scripts\FollowTransform.js" />
