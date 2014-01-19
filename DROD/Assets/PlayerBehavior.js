@@ -1,6 +1,7 @@
 ﻿#pragma strict
 
-var hp = 10;
+var maxHP = 10;
+var hp = maxHP;
 var MOVE_DIST = 6;
 var moveTimer = 0;
 var moveRate = 100;
@@ -35,9 +36,8 @@ function Update ()
 			else if (go.name == "SkeletonArcher" && !go.GetComponent(SkeletonArcher).awoken)
 				go.GetComponent(SkeletonArcher).CheckForPlayer();
 		}
-		gos = GameObject.FindGameObjectsWithTag("EndZone");
-		for (var go : GameObject in gos)
-			go.GetComponent(EndZone).AreaChange();
+		if (Physics.Raycast (Vector3(transform.position.x, 5, transform.position.z), Vector3.down, hit, 10, 1) && hit.collider.gameObject.tag == "EndZone")
+			hit.collider.gameObject.GetComponent(EndZone).AreaChange();
 		if (firstFrame)
 		hasMoved = true;
 	}
@@ -54,9 +54,8 @@ function Update ()
 			else if (go.name == "SkeletonArcher" && !go.GetComponent(SkeletonArcher).awoken)
 				go.GetComponent(SkeletonArcher).CheckForPlayer();
 		}
-		gos = GameObject.FindGameObjectsWithTag("EndZone");
-		for (var go : GameObject in gos)
-			go.GetComponent(EndZone).AreaChange();
+		if (Physics.Raycast (Vector3(transform.position.x, 5, transform.position.z), Vector3.down, hit, 10, 1) && hit.collider.gameObject.tag == "EndZone")
+			hit.collider.gameObject.GetComponent(EndZone).AreaChange();
 		if (firstFrame)
 		hasMoved = true;
 	}
@@ -73,9 +72,8 @@ function Update ()
 			else if (go.name == "SkeletonArcher" && !go.GetComponent(SkeletonArcher).awoken)
 				go.GetComponent(SkeletonArcher).CheckForPlayer();
 		}
-		gos = GameObject.FindGameObjectsWithTag("EndZone");
-		for (var go : GameObject in gos)
-			go.GetComponent(EndZone).AreaChange();
+		if (Physics.Raycast (Vector3(transform.position.x, 5, transform.position.z), Vector3.down, hit, 10, 1) && hit.collider.gameObject.tag == "EndZone")
+			hit.collider.gameObject.GetComponent(EndZone).AreaChange();
 		if (firstFrame)
 		hasMoved = true;
 	}
@@ -92,9 +90,8 @@ function Update ()
 			else if (go.name == "SkeletonArcher" && !go.GetComponent(SkeletonArcher).awoken)
 				go.GetComponent(SkeletonArcher).CheckForPlayer();
 		}
-		gos = GameObject.FindGameObjectsWithTag("EndZone");
-		for (var go : GameObject in gos)
-			go.GetComponent(EndZone).AreaChange();
+		if (Physics.Raycast (Vector3(transform.position.x, 5, transform.position.z), Vector3.down, hit, 10, 1) && hit.collider.gameObject.tag == "EndZone")
+			hit.collider.gameObject.GetComponent(EndZone).AreaChange();
 		if (firstFrame)
 		hasMoved = true;
 	}
@@ -113,9 +110,8 @@ function Update ()
 			else if (go.name == "SkeletonArcher" && !go.GetComponent(SkeletonArcher).awoken)
 				go.GetComponent(SkeletonArcher).CheckForPlayer();
 		}
-		gos = GameObject.FindGameObjectsWithTag("EndZone");
-		for (var go : GameObject in gos)
-			go.GetComponent(EndZone).AreaChange();
+		if (Physics.Raycast (Vector3(transform.position.x, 5, transform.position.z), Vector3.down, hit, 10, 1) && hit.collider.gameObject.tag == "EndZone")
+			hit.collider.gameObject.GetComponent(EndZone).AreaChange();
 		if (firstFrame)
 		hasMoved = true;
 	}
@@ -134,9 +130,8 @@ function Update ()
 			else if (go.name == "SkeletonArcher" && !go.GetComponent(SkeletonArcher).awoken)
 				go.GetComponent(SkeletonArcher).CheckForPlayer();
 		}
-		gos = GameObject.FindGameObjectsWithTag("EndZone");
-		for (var go : GameObject in gos)
-			go.GetComponent(EndZone).AreaChange();
+		if (Physics.Raycast (Vector3(transform.position.x, 5, transform.position.z), Vector3.down, hit, 10, 1) && hit.collider.gameObject.tag == "EndZone")
+			hit.collider.gameObject.GetComponent(EndZone).AreaChange();
 		if (firstFrame)
 		hasMoved = true;
 	}
@@ -155,9 +150,8 @@ function Update ()
 			else if (go.name == "SkeletonArcher" && !go.GetComponent(SkeletonArcher).awoken)
 				go.GetComponent(SkeletonArcher).CheckForPlayer();
 		}
-		gos = GameObject.FindGameObjectsWithTag("EndZone");
-		for (var go : GameObject in gos)
-			go.GetComponent(EndZone).AreaChange();
+		if (Physics.Raycast (Vector3(transform.position.x, 5, transform.position.z), Vector3.down, hit, 10, 1) && hit.collider.gameObject.tag == "EndZone")
+			hit.collider.gameObject.GetComponent(EndZone).AreaChange();
 		if (firstFrame)
 		hasMoved = true;
 	}
@@ -176,9 +170,8 @@ function Update ()
 			else if (go.name == "SkeletonArcher" && !go.GetComponent(SkeletonArcher).awoken)
 				go.GetComponent(SkeletonArcher).CheckForPlayer();
 		}
-		gos = GameObject.FindGameObjectsWithTag("EndZone");
-		for (var go : GameObject in gos)
-			go.GetComponent(EndZone).AreaChange();
+		if (Physics.Raycast (Vector3(transform.position.x, 5, transform.position.z), Vector3.down, hit, 10, 1) && hit.collider.gameObject.tag == "EndZone")
+			hit.collider.gameObject.GetComponent(EndZone).AreaChange();
 		if (firstFrame)
 		hasMoved = true;
 	}
@@ -350,6 +343,6 @@ function OnGUI ()
 	{
 		GUI.skin = guiSkin;
 		GUI.color = Color.black;
-		GUI.Label (Rect (10, 10, 500, 40), "Health: " + hp);
+		GUI.Label (Rect (10, 10, 500, 40), "Health: " + hp + " / " + maxHP);
 	}
 }

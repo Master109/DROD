@@ -36,11 +36,11 @@ function AreaChange ()
 				gos = GameObject.FindGameObjectsWithTag("Area");
 				for (var go3 : GameObject in gos)
 				{
-					if (GameObject.Find("Player Graphics").transform.position.x > go3.GetComponent(BoxCollider).center.x - go3.GetComponent(BoxCollider).size.x / 2 && GameObject.Find("Player Graphics").transform.position.x < go3.GetComponent(BoxCollider).center.x + go3.GetComponent(BoxCollider).size.x / 2 && GameObject.Find("Player Graphics").transform.position.z > go3.GetComponent(BoxCollider).center.z - go3.GetComponent(BoxCollider).size.z / 2 && GameObject.Find("Player Graphics").transform.position.z < go3.GetComponent(BoxCollider).center.z + go3.GetComponent(BoxCollider).size.z / 2)
+					if (GameObject.Find("Player Graphics").transform.position.x > (go3.transform.position.x + go3.GetComponent(BoxCollider).center.x) - go3.GetComponent(BoxCollider).size.x / 2 && GameObject.Find("Player Graphics").transform.position.x < (go3.transform.position.x + go3.GetComponent(BoxCollider).center.x) + go3.GetComponent(BoxCollider).size.x / 2 && GameObject.Find("Player Graphics").transform.position.z > (go3.transform.position.z + go3.GetComponent(BoxCollider).center.z) - go3.GetComponent(BoxCollider).size.z / 2 && GameObject.Find("Player Graphics").transform.position.z < (go3.transform.position.z + go3.GetComponent(BoxCollider).center.z) + go3.GetComponent(BoxCollider).size.z / 2)
 					{
 						gos = GameObject.FindGameObjectsWithTag("Enemy");
 						for (var go4 : GameObject in gos)
-							if (go4.transform.position.x > go3.GetComponent(BoxCollider).center.x - go3.GetComponent(BoxCollider).size.x / 2 && go4.transform.position.x < go3.GetComponent(BoxCollider).center.x + go3.GetComponent(BoxCollider).size.x / 2 && go4.transform.position.z > go3.GetComponent(BoxCollider).center.z - go3.GetComponent(BoxCollider).size.z / 2 && go4.transform.position.z < go3.GetComponent(BoxCollider).center.z + go3.GetComponent(BoxCollider).size.z / 2)
+							if (go4.transform.position.x > (go3.transform.position.x + go3.GetComponent(BoxCollider).center.x) - go3.GetComponent(BoxCollider).size.x / 2 && go4.transform.position.x < (go3.transform.position.x + go3.GetComponent(BoxCollider).center.x) + go3.GetComponent(BoxCollider).size.x / 2 && go4.transform.position.z > (go3.transform.position.z + go3.GetComponent(BoxCollider).center.z) - go3.GetComponent(BoxCollider).size.z / 2 && go4.transform.position.z < (go3.transform.position.z + go3.GetComponent(BoxCollider).center.z) + go3.GetComponent(BoxCollider).size.z / 2)
 							{
 								if (go4.name == "Roach")
 									go4.GetComponent(RoachBehavior).paused = false;
@@ -52,7 +52,7 @@ function AreaChange ()
 					{
 						gos = GameObject.FindGameObjectsWithTag("Enemy");
 						for (var go5 : GameObject in gos)
-							if (go5.transform.position.x > go3.GetComponent(BoxCollider).center.x - go3.GetComponent(BoxCollider).size.x / 2 && go5.transform.position.x < go3.GetComponent(BoxCollider).center.x + go3.GetComponent(BoxCollider).size.x / 2 && go5.transform.position.z > go3.GetComponent(BoxCollider).center.z - go3.GetComponent(BoxCollider).size.z / 2 && go5.transform.position.z < go3.GetComponent(BoxCollider).center.z + go3.GetComponent(BoxCollider).size.z / 2)
+							if (go5.transform.position.x > (go3.transform.position.x + go3.GetComponent(BoxCollider).center.x) - go3.GetComponent(BoxCollider).size.x / 2 && go5.transform.position.x < (go3.transform.position.x + go3.GetComponent(BoxCollider).center.x) + go3.GetComponent(BoxCollider).size.x / 2 && go5.transform.position.z > (go3.transform.position.z + go3.GetComponent(BoxCollider).center.z) - go3.GetComponent(BoxCollider).size.z / 2 && go5.transform.position.z < (go3.transform.position.z + go3.GetComponent(BoxCollider).center.z) + go3.GetComponent(BoxCollider).size.z / 2)
 							{
 								if (go5.name == "Roach")
 									go5.GetComponent(RoachBehavior).paused = true;
