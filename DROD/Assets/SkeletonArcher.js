@@ -19,6 +19,7 @@ var go : GameObject;
 var damage = 1;
 var shootForce = 75;
 var shouldMove = false;
+var paused = true;
 
 function Start ()
 {
@@ -27,6 +28,8 @@ function Start ()
 
 function Update ()
 {
+	if (paused)
+		return;
 	if (!awoken)
 		return;
 	moveTimer ++;
@@ -347,6 +350,8 @@ function Update ()
 		
 function CheckForPlayer ()
 {
+	if (paused)
+		return;
 	var vector = transform.position;
 	for (var i = 0; i < awakeRadius; i ++)
 	{
@@ -383,6 +388,8 @@ function CheckForPlayer ()
 
 function OnTriggerStay (other : Collider)
 {
+	if (paused)
+		return;
 	attackTimer ++;
 	playerAttackTimer ++;
 	if (other.gameObject.name == "Player Graphics" && attackTimer > attackRate && attackRate != -1)
@@ -403,6 +410,8 @@ function OnTriggerStay (other : Collider)
 
 function OnTriggerExit (other : Collider)
 {
+	if (paused)
+		return;
 	if (other.gameObject.name == "Player Graphics")
 		attackTimer = attackRate;
 	else if (other.gameObject.name == "Player Sword")
