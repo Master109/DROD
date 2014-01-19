@@ -6,6 +6,7 @@ var moveRate = 30;
 var vel : Vector3;
 var damage = 1;
 var destination : Vector3;
+var extraRange = 5;
 
 function Start ()
 {
@@ -19,7 +20,7 @@ function Update ()
 	{
 		transform.position += vel;
 		moveTimer = 0;
-		if (transform.position == destination)
+		if (transform.position == destination + vel + (vel * extraRange))
 			Destroy(gameObject);
 	}
 }
