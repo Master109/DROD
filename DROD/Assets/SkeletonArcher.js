@@ -28,9 +28,7 @@ function Start ()
 
 function Update ()
 {
-	if (paused)
-		return;
-	if (!awoken)
+	if (!awoken || paused || GameObject.Find("Player").GetComponent(PlayerBehavior).showBowText || GameObject.Find("Player").GetComponent(PlayerBehavior).showBowText2 || GameObject.Find("Player").GetComponent(PlayerBehavior).showBowText3)
 		return;
 	moveTimer ++;
 	if (moveTimer > moveRate)
@@ -408,14 +406,19 @@ function OnTriggerStay (other : Collider)
 			Destroy(gameObject);
 			for (var i = 0; i < loot.length; i ++)
 			{
-				if (loot[i].name == "Bow" && GameObject.Find("Player Graphics").GetComponent(Bow) == null)
+				if (loot[i].name == "Bow")
 				{
-					GameObject.Find("Player Graphics").AddComponent(Bow);
-					GameObject.Find("Player Graphics").GetComponent(Bow).bullet = GameObject.Find("Bow").GetComponent(Bow).bullet;
-					GameObject.Find("Player Graphics").GetComponent(Bow).arrows = 5;
-					if (GameObject.Find("Player").GetComponent(PlayerBehavior).firstBow)
-						GameObject.Find("Player").GetComponent(PlayerBehavior).showBowText = true;
-					GameObject.Find("Player").GetComponent(PlayerBehavior).firstBow = false;
+					if (GameObject.Find("Player Graphics").GetComponent(Bow) == null)
+					{
+						GameObject.Find("Player Graphics").AddComponent(Bow);
+						GameObject.Find("Player Graphics").GetComponent(Bow).bullet = GameObject.Find("Bow").GetComponent(Bow).bullet;
+						GameObject.Find("Player Graphics").GetComponent(Bow).arrows = 5;
+						if (GameObject.Find("Player").GetComponent(PlayerBehavior).firstBow)
+							GameObject.Find("Player").GetComponent(PlayerBehavior).showBowText = true;
+						GameObject.Find("Player").GetComponent(PlayerBehavior).firstBow = false;
+					}
+					else
+						GameObject.Find("Player Graphics").GetComponent(Bow).arrows += GetComponent(Bow).arrows;
 				}
 			}
 		}

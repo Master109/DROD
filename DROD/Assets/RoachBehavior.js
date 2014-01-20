@@ -20,9 +20,7 @@ function Start ()
 
 function Update ()
 {
-	if (paused)
-		return;
-	if (!awoken)
+	if (!awoken || paused || GameObject.Find("Player").GetComponent(PlayerBehavior).showBowText || GameObject.Find("Player").GetComponent(PlayerBehavior).showBowText2 || GameObject.Find("Player").GetComponent(PlayerBehavior).showBowText3)
 		return;
 	moveTimer ++;
 	if (moveTimer > moveRate)

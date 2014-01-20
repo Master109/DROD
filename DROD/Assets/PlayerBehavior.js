@@ -409,5 +409,8 @@ function OnGUI ()
 		GUI.Box(Rect(0, 0, 725, 25), "Hold one of the 8 keys surrounding the 'S' on the numpad to shoot in that direction (pretend you are standing on the 'S')");
 		// End the scroll view that we began above.
 		GUI.EndScrollView ();
+		
+		if (Input.GetAxis("ShootHorizontal") != 0 || Input.GetAxis("ShootVertical") != 0 || Input.GetAxis("ShootDiagonal45") != 0 || Input.GetAxis("ShootDiagonal315") != 0)
+			 showBowText3 = true;
 	}
 }
