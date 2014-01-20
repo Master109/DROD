@@ -3,8 +3,6 @@
 var pairID = 0;
 var teleport = false;
 var gos : GameObject[];
-//var gos2 : GameObject[];
-//var gos3 : GameObject[];
 
 function Start ()
 {

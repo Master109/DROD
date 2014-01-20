@@ -20,10 +20,19 @@ var damage = 1;
 var shootForce = 75;
 var shouldMove = false;
 var paused = true;
+var loot : Component[];
 
 function Start ()
 {
-	
+	for (var i = 0; i < loot.length; i ++)
+	{
+		if (loot[i].name == "Bow" && GameObject.Find("Player Graphics").GetComponent(Bow) == null)
+		{
+			GameObject.Find("Player Graphics").AddComponent(Bow);
+			GameObject.Find("Player Graphics").GetComponent(Bow).bullet = GameObject.Find("Bow").GetComponent(Bow).bullet;
+			GameObject.Find("Player Graphics").GetComponent(Bow).arrows = 5;
+		}
+	}
 }
 
 function Update ()
@@ -49,41 +58,41 @@ function Update ()
 	}
 	if (vector != GameObject.Find("Player Graphics").transform.position || shouldMove)
 	{
-		if (transform.position.x - GameObject.Find("Player Graphics").transform.position.x > 0 && transform.position.z - GameObject.Find("Player Graphics").transform.position.z == 0 && Physics.Raycast (Vector3(transform.position.x - MOVE_DIST, 5, transform.position.z), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Cube" || hit.collider.gameObject.name == "Player Graphics"))
+		if (transform.position.x - GameObject.Find("Player Graphics").transform.position.x > 0 && transform.position.z - GameObject.Find("Player Graphics").transform.position.z == 0 && Physics.Raycast (Vector3(transform.position.x - MOVE_DIST, 5, transform.position.z), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Player Graphics"))
 			transform.position.x -= MOVE_DIST;
-		else if (transform.position.x - GameObject.Find("Player Graphics").transform.position.x < 0 && transform.position.z - GameObject.Find("Player Graphics").transform.position.z == 0 && Physics.Raycast (Vector3(transform.position.x + MOVE_DIST, 5, transform.position.z), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Cube" || hit.collider.gameObject.name == "Player Graphics"))
+		else if (transform.position.x - GameObject.Find("Player Graphics").transform.position.x < 0 && transform.position.z - GameObject.Find("Player Graphics").transform.position.z == 0 && Physics.Raycast (Vector3(transform.position.x + MOVE_DIST, 5, transform.position.z), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Player Graphics"))
 			transform.position.x += MOVE_DIST;
-		else if (transform.position.z - GameObject.Find("Player Graphics").transform.position.z > 0 && transform.position.x - GameObject.Find("Player Graphics").transform.position.x == 0 && Physics.Raycast (Vector3(transform.position.x, 5, transform.position.z - MOVE_DIST), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Cube" || hit.collider.gameObject.name == "Player Graphics"))
+		else if (transform.position.z - GameObject.Find("Player Graphics").transform.position.z > 0 && transform.position.x - GameObject.Find("Player Graphics").transform.position.x == 0 && Physics.Raycast (Vector3(transform.position.x, 5, transform.position.z - MOVE_DIST), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Player Graphics"))
 			transform.position.z -= MOVE_DIST;
-		else if (transform.position.z - GameObject.Find("Player Graphics").transform.position.z < 0 && transform.position.x - GameObject.Find("Player Graphics").transform.position.x == 0 && Physics.Raycast (Vector3(transform.position.x, 5, transform.position.z + MOVE_DIST), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Cube" || hit.collider.gameObject.name == "Player Graphics"))
+		else if (transform.position.z - GameObject.Find("Player Graphics").transform.position.z < 0 && transform.position.x - GameObject.Find("Player Graphics").transform.position.x == 0 && Physics.Raycast (Vector3(transform.position.x, 5, transform.position.z + MOVE_DIST), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Player Graphics"))
 			transform.position.z += MOVE_DIST;
-		else if (transform.position.z - GameObject.Find("Player Graphics").transform.position.z < 0 && transform.position.x - GameObject.Find("Player Graphics").transform.position.x > 0 && Physics.Raycast (Vector3(transform.position.x - MOVE_DIST, 5, transform.position.z + MOVE_DIST), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Cube" || hit.collider.gameObject.name == "Player Graphics"))
-		{
-			transform.position.z += MOVE_DIST;
-			transform.position.x -= MOVE_DIST;
-		}
-		else if (transform.position.z - GameObject.Find("Player Graphics").transform.position.z < 0 && transform.position.x - GameObject.Find("Player Graphics").transform.position.x < 0 && Physics.Raycast (Vector3(transform.position.x + MOVE_DIST, 5, transform.position.z + MOVE_DIST), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Cube" || hit.collider.gameObject.name == "Player Graphics"))
+		else if (transform.position.z - GameObject.Find("Player Graphics").transform.position.z < 0 && transform.position.x - GameObject.Find("Player Graphics").transform.position.x > 0 && Physics.Raycast (Vector3(transform.position.x - MOVE_DIST, 5, transform.position.z + MOVE_DIST), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Player Graphics"))
 		{
 			transform.position.z += MOVE_DIST;
+			transform.position.x -= MOVE_DIST;
+		}
+		else if (transform.position.z - GameObject.Find("Player Graphics").transform.position.z < 0 && transform.position.x - GameObject.Find("Player Graphics").transform.position.x < 0 && Physics.Raycast (Vector3(transform.position.x + MOVE_DIST, 5, transform.position.z + MOVE_DIST), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Player Graphics"))
+		{
+			transform.position.z += MOVE_DIST;
 			transform.position.x += MOVE_DIST;
 		}
-		else if (transform.position.z - GameObject.Find("Player Graphics").transform.position.z > 0 && transform.position.x - GameObject.Find("Player Graphics").transform.position.x < 0 && Physics.Raycast (Vector3(transform.position.x + MOVE_DIST, 5, transform.position.z - MOVE_DIST), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Cube" || hit.collider.gameObject.name == "Player Graphics"))
+		else if (transform.position.z - GameObject.Find("Player Graphics").transform.position.z > 0 && transform.position.x - GameObject.Find("Player Graphics").transform.position.x < 0 && Physics.Raycast (Vector3(transform.position.x + MOVE_DIST, 5, transform.position.z - MOVE_DIST), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Player Graphics"))
 		{
 			transform.position.z -= MOVE_DIST;
 			transform.position.x += MOVE_DIST;
 		}
-		else if (transform.position.z - GameObject.Find("Player Graphics").transform.position.z > 0 && transform.position.x - GameObject.Find("Player Graphics").transform.position.x > 0 && Physics.Raycast (Vector3(transform.position.x - MOVE_DIST, 5, transform.position.z - MOVE_DIST), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Cube" || hit.collider.gameObject.name == "Player Graphics"))
+		else if (transform.position.z - GameObject.Find("Player Graphics").transform.position.z > 0 && transform.position.x - GameObject.Find("Player Graphics").transform.position.x > 0 && Physics.Raycast (Vector3(transform.position.x - MOVE_DIST, 5, transform.position.z - MOVE_DIST), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Player Graphics"))
 		{
 			transform.position.z -= MOVE_DIST;
 			transform.position.x -= MOVE_DIST;
 		}
-		else if (transform.position.x - GameObject.Find("Player Graphics").transform.position.x > 0 && Physics.Raycast (Vector3(transform.position.x - MOVE_DIST, 5, transform.position.z), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Cube" || hit.collider.gameObject.name == "Player Graphics"))
+		else if (transform.position.x - GameObject.Find("Player Graphics").transform.position.x > 0 && Physics.Raycast (Vector3(transform.position.x - MOVE_DIST, 5, transform.position.z), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Player Graphics"))
 			transform.position.x -= MOVE_DIST;
-		else if (transform.position.x - GameObject.Find("Player Graphics").transform.position.x < 0 && Physics.Raycast (Vector3(transform.position.x + MOVE_DIST, 5, transform.position.z), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Cube" || hit.collider.gameObject.name == "Player Graphics"))
+		else if (transform.position.x - GameObject.Find("Player Graphics").transform.position.x < 0 && Physics.Raycast (Vector3(transform.position.x + MOVE_DIST, 5, transform.position.z), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Player Graphics"))
 			transform.position.x += MOVE_DIST;
-		else if (transform.position.z - GameObject.Find("Player Graphics").transform.position.z > 0 && Physics.Raycast (Vector3(transform.position.x, 5, transform.position.z - MOVE_DIST), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Cube" || hit.collider.gameObject.name == "Player Graphics"))
+		else if (transform.position.z - GameObject.Find("Player Graphics").transform.position.z > 0 && Physics.Raycast (Vector3(transform.position.x, 5, transform.position.z - MOVE_DIST), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Player Graphics"))
 			transform.position.z -= MOVE_DIST;
-		else if (transform.position.z - GameObject.Find("Player Graphics").transform.position.z < 0 && Physics.Raycast (Vector3(transform.position.x, 5, transform.position.z + MOVE_DIST), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Cube" || hit.collider.gameObject.name == "Player Graphics"))
+		else if (transform.position.z - GameObject.Find("Player Graphics").transform.position.z < 0 && Physics.Raycast (Vector3(transform.position.x, 5, transform.position.z + MOVE_DIST), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Player Graphics"))
 			transform.position.z += MOVE_DIST;
 		shouldMove = false;
 		moveTimer = 0;
@@ -103,12 +112,12 @@ function Update ()
 				go.GetComponent(Bullet).vel = Vector3(-MOVE_DIST, 0, 0);
 				go.GetComponent(Bullet).moveRate = shootForce; go.GetComponent(Bullet).extraRange = range - 1;
 				go.GetComponent(Bullet).destination = GameObject.Find("Player Graphics").transform.position;
-				shootTimer = 0;shouldMove2 = false;
+				shootTimer = 0;shouldMove2 = false; go.GetComponent(Bullet).shooter = gameObject;
 			}
 			else
 			for (var i2 = 2; i2 <= range; i2 ++)
 			{
-			if (Physics.Raycast (Vector3(vector2.x, 5, vector2.z), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Cube" || hit.collider.gameObject.name == "Player Sword" || hit.collider.gameObject.name == "Player Graphics"))
+			if (Physics.Raycast (Vector3(vector2.x, 5, vector2.z), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Player Sword" || hit.collider.gameObject.name == "Player Graphics"))
 			{
 			vector2.x -= MOVE_DIST;
 			if (vector2 == GameObject.Find("Player Graphics").transform.position)
@@ -118,7 +127,7 @@ function Update ()
 				go.GetComponent(Bullet).vel = Vector3(-MOVE_DIST, 0, 0);
 				go.GetComponent(Bullet).moveRate = shootForce; go.GetComponent(Bullet).extraRange = range - i2;
 				go.GetComponent(Bullet).destination = GameObject.Find("Player Graphics").transform.position;
-				shootTimer = 0;shouldMove2 = false;
+				shootTimer = 0;shouldMove2 = false; go.GetComponent(Bullet).shooter = gameObject;
 			}
 			}
 			}
@@ -133,12 +142,12 @@ function Update ()
 				go.GetComponent(Bullet).vel = Vector3(MOVE_DIST, 0, 0);
 				go.GetComponent(Bullet).moveRate = shootForce; go.GetComponent(Bullet).extraRange = range - 1;
 				go.GetComponent(Bullet).destination = GameObject.Find("Player Graphics").transform.position;
-				shootTimer = 0;shouldMove2 = false;
+				shootTimer = 0;shouldMove2 = false; go.GetComponent(Bullet).shooter = gameObject;
 			}
 			else
 		for (var i3 = 2; i3 <= range; i3 ++)
 			{
-			if (Physics.Raycast (Vector3(vector2.x, 5, vector2.z), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Cube" || hit.collider.gameObject.name == "Player Sword" || hit.collider.gameObject.name == "Player Graphics"))
+			if (Physics.Raycast (Vector3(vector2.x, 5, vector2.z), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Player Sword" || hit.collider.gameObject.name == "Player Graphics"))
 			{
 			vector2.x += MOVE_DIST;
 			if (vector2 == GameObject.Find("Player Graphics").transform.position)
@@ -148,7 +157,7 @@ function Update ()
 				go.GetComponent(Bullet).vel = Vector3(MOVE_DIST, 0, 0);
 				go.GetComponent(Bullet).moveRate = shootForce; go.GetComponent(Bullet).extraRange = range - i3;
 				go.GetComponent(Bullet).destination = GameObject.Find("Player Graphics").transform.position;
-				shootTimer = 0;shouldMove2 = false;
+				shootTimer = 0;shouldMove2 = false; go.GetComponent(Bullet).shooter = gameObject;
 			}
 			}
 			}
@@ -163,12 +172,12 @@ function Update ()
 				go.GetComponent(Bullet).vel = Vector3(0, 0, -MOVE_DIST);
 				go.GetComponent(Bullet).moveRate = shootForce; go.GetComponent(Bullet).extraRange = range - 1;
 				go.GetComponent(Bullet).destination = GameObject.Find("Player Graphics").transform.position;
-				shootTimer = 0;shouldMove2 = false;
+				shootTimer = 0;shouldMove2 = false; go.GetComponent(Bullet).shooter = gameObject;
 			}
 			else
 		for (var i4 = 2; i4 <= range; i4 ++)
 			{
-			if (Physics.Raycast (Vector3(vector2.x, 5, vector2.z), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Cube" || hit.collider.gameObject.name == "Player Sword" || hit.collider.gameObject.name == "Player Graphics"))
+			if (Physics.Raycast (Vector3(vector2.x, 5, vector2.z), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Player Sword" || hit.collider.gameObject.name == "Player Graphics"))
 			{
 			vector2.z -= MOVE_DIST;
 			if (vector2 == GameObject.Find("Player Graphics").transform.position)
@@ -178,7 +187,7 @@ function Update ()
 				go.GetComponent(Bullet).vel = Vector3(0, 0, -MOVE_DIST);
 				go.GetComponent(Bullet).moveRate = shootForce; go.GetComponent(Bullet).extraRange = range - i4;
 				go.GetComponent(Bullet).destination = GameObject.Find("Player Graphics").transform.position;
-				shootTimer = 0;shouldMove2 = false;
+				shootTimer = 0;shouldMove2 = false; go.GetComponent(Bullet).shooter = gameObject;
 			}
 			}
 			}
@@ -193,12 +202,12 @@ function Update ()
 				go.GetComponent(Bullet).vel = Vector3(0, 0, MOVE_DIST);
 				go.GetComponent(Bullet).moveRate = shootForce; go.GetComponent(Bullet).extraRange = range - 1;
 				go.GetComponent(Bullet).destination = GameObject.Find("Player Graphics").transform.position;
-				shootTimer = 0;shouldMove2 = false;
+				shootTimer = 0;shouldMove2 = false; go.GetComponent(Bullet).shooter = gameObject;
 			}
 			else
 		for (var i5 = 2; i5 <= range; i5 ++)
 			{
-			if (Physics.Raycast (Vector3(vector2.x, 5, vector2.z), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Cube" || hit.collider.gameObject.name == "Player Sword" || hit.collider.gameObject.name == "Player Graphics"))
+			if (Physics.Raycast (Vector3(vector2.x, 5, vector2.z), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Player Sword" || hit.collider.gameObject.name == "Player Graphics"))
 			{
 			vector2.z += MOVE_DIST;
 			if (vector2 == GameObject.Find("Player Graphics").transform.position)
@@ -208,7 +217,7 @@ function Update ()
 				go.GetComponent(Bullet).vel = Vector3(0, 0, MOVE_DIST);
 				go.GetComponent(Bullet).moveRate = shootForce; go.GetComponent(Bullet).extraRange = range - i5;
 				go.GetComponent(Bullet).destination = GameObject.Find("Player Graphics").transform.position;
-				shootTimer = 0;shouldMove2 = false;
+				shootTimer = 0;shouldMove2 = false; go.GetComponent(Bullet).shooter = gameObject;
 			}
 			}
 			}
@@ -225,12 +234,12 @@ function Update ()
 				go.GetComponent(Bullet).moveRate = shootForce; go.GetComponent(Bullet).extraRange = range - 1;
 				go.GetComponent(Bullet).destination = GameObject.Find("Player Graphics").transform.position;
 				shootTimer = 0;
-				shouldMove2 = false;
+				shouldMove2 = false; go.GetComponent(Bullet).shooter = gameObject;
 			}
 			else
 		for (var i9 = 2; i9 <= range; i9 ++)
 			{
-			if (Physics.Raycast (Vector3(vector2.x, 5, vector2.z), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Cube" || hit.collider.gameObject.name == "Player Sword" || hit.collider.gameObject.name == "Player Graphics"))
+			if (Physics.Raycast (Vector3(vector2.x, 5, vector2.z), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Player Sword" || hit.collider.gameObject.name == "Player Graphics"))
 			{
 			vector2.x -= MOVE_DIST;
 			vector2.z -= MOVE_DIST;
@@ -242,7 +251,7 @@ function Update ()
 				go.GetComponent(Bullet).moveRate = shootForce; go.GetComponent(Bullet).extraRange = range - i9;
 				go.GetComponent(Bullet).destination = GameObject.Find("Player Graphics").transform.position;
 				shootTimer = 0;
-				shouldMove2 = false;
+				shouldMove2 = false; go.GetComponent(Bullet).shooter = gameObject;
 			}
 			}
 			}
@@ -258,12 +267,12 @@ function Update ()
 				go.GetComponent(Bullet).vel = Vector3(MOVE_DIST, 0, -MOVE_DIST);
 				go.GetComponent(Bullet).moveRate = shootForce; go.GetComponent(Bullet).extraRange = range - 1;
 				go.GetComponent(Bullet).destination = GameObject.Find("Player Graphics").transform.position;
-				shootTimer = 0;shouldMove2 = false;
+				shootTimer = 0;shouldMove2 = false; go.GetComponent(Bullet).shooter = gameObject;
 			}
 			else
 		for (var i6 = 2; i6 <= range; i6 ++)
 			{
-			if (Physics.Raycast (Vector3(vector2.x, 5, vector2.z), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Cube" || hit.collider.gameObject.name == "Player Sword" || hit.collider.gameObject.name == "Player Graphics"))
+			if (Physics.Raycast (Vector3(vector2.x, 5, vector2.z), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Player Sword" || hit.collider.gameObject.name == "Player Graphics"))
 			{
 			vector2.x += MOVE_DIST;
 			vector2.z -= MOVE_DIST;
@@ -274,7 +283,7 @@ function Update ()
 				go.GetComponent(Bullet).vel = Vector3(MOVE_DIST, 0, -MOVE_DIST);
 				go.GetComponent(Bullet).moveRate = shootForce; go.GetComponent(Bullet).extraRange = range - i6;
 				go.GetComponent(Bullet).destination = GameObject.Find("Player Graphics").transform.position;
-				shootTimer = 0;shouldMove2 = false;
+				shootTimer = 0;shouldMove2 = false; go.GetComponent(Bullet).shooter = gameObject;
 			}
 			}
 			}
@@ -290,12 +299,12 @@ function Update ()
 				go.GetComponent(Bullet).vel = Vector3(MOVE_DIST, 0, MOVE_DIST);
 				go.GetComponent(Bullet).moveRate = shootForce; go.GetComponent(Bullet).extraRange = range - 1;
 				go.GetComponent(Bullet).destination = GameObject.Find("Player Graphics").transform.position;
-				shootTimer = 0;shouldMove2 = false;
+				shootTimer = 0;shouldMove2 = false; go.GetComponent(Bullet).shooter = gameObject;
 			}
 			else
 		for (var i7 = 2; i7 <= range; i7 ++)
 			{
-			if (Physics.Raycast (Vector3(vector2.x, 5, vector2.z), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Cube" || hit.collider.gameObject.name == "Player Sword" || hit.collider.gameObject.name == "Player Graphics"))
+			if (Physics.Raycast (Vector3(vector2.x, 5, vector2.z), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Player Sword" || hit.collider.gameObject.name == "Player Graphics"))
 			{
 			vector2.x += MOVE_DIST;
 			vector2.z += MOVE_DIST;
@@ -306,7 +315,7 @@ function Update ()
 				go.GetComponent(Bullet).vel = Vector3(MOVE_DIST, 0, MOVE_DIST);
 				go.GetComponent(Bullet).moveRate = shootForce; go.GetComponent(Bullet).extraRange = range - i7;
 				go.GetComponent(Bullet).destination = GameObject.Find("Player Graphics").transform.position;
-				shootTimer = 0;shouldMove2 = false;
+				shootTimer = 0;shouldMove2 = false; go.GetComponent(Bullet).shooter = gameObject;
 			}
 			}
 			}
@@ -323,12 +332,12 @@ function Update ()
 				go.GetComponent(Bullet).vel = Vector3(-MOVE_DIST, 0, MOVE_DIST);
 				go.GetComponent(Bullet).moveRate = shootForce; go.GetComponent(Bullet).extraRange = range - 1;
 				go.GetComponent(Bullet).destination = GameObject.Find("Player Graphics").transform.position;
-				shootTimer = 0;shouldMove2 = false;
+				shootTimer = 0;shouldMove2 = false; go.GetComponent(Bullet).shooter = gameObject;
 			}
 			else
 		for (var i8 = 2; i8 <= range; i8 ++)
 			{
-			if (Physics.Raycast (Vector3(vector2.x, 5, vector2.z), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Cube" || hit.collider.gameObject.name == "Player Sword" || hit.collider.gameObject.name == "Player Graphics"))
+			if (Physics.Raycast (Vector3(vector2.x, 5, vector2.z), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Player Sword" || hit.collider.gameObject.name == "Player Graphics"))
 			{
 			vector2.x -= MOVE_DIST;
 			vector2.z += MOVE_DIST;
@@ -339,7 +348,7 @@ function Update ()
 				go.GetComponent(Bullet).vel = Vector3(-MOVE_DIST, 0, MOVE_DIST);
 				go.GetComponent(Bullet).moveRate = shootForce; go.GetComponent(Bullet).extraRange = range - i8;
 				go.GetComponent(Bullet).destination = GameObject.Find("Player Graphics").transform.position;
-				shootTimer = 0;shouldMove2 = false;
+				shootTimer = 0;shouldMove2 = false; go.GetComponent(Bullet).shooter = gameObject;
 			}
 				}
 				}
@@ -404,7 +413,18 @@ function OnTriggerStay (other : Collider)
 		playerAttackTimer = 0;
 		hp --;
 		if (hp <= 0)
+		{
 			Destroy(gameObject);
+			for (var i = 0; i < loot.length; i ++)
+			{
+				if (loot[i].name == "Bow" && GameObject.Find("Player Graphics").GetComponent(Bow) == null)
+				{
+					GameObject.Find("Player Graphics").AddComponent(Bow);
+					GameObject.Find("Player Graphics").GetComponent(Bow).bullet = GameObject.Find("Bow").GetComponent(Bow).bullet;
+					GameObject.Find("Player Graphics").GetComponent(Bow).arrows = 5;
+				}
+			}
+		}
 	}
 }
 
