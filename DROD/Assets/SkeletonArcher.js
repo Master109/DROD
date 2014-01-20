@@ -24,15 +24,6 @@ var loot : Component[];
 
 function Start ()
 {
-	for (var i = 0; i < loot.length; i ++)
-	{
-		if (loot[i].name == "Bow" && GameObject.Find("Player Graphics").GetComponent(Bow) == null)
-		{
-			GameObject.Find("Player Graphics").AddComponent(Bow);
-			GameObject.Find("Player Graphics").GetComponent(Bow).bullet = GameObject.Find("Bow").GetComponent(Bow).bullet;
-			GameObject.Find("Player Graphics").GetComponent(Bow).arrows = 5;
-		}
-	}
 }
 
 function Update ()
@@ -422,6 +413,9 @@ function OnTriggerStay (other : Collider)
 					GameObject.Find("Player Graphics").AddComponent(Bow);
 					GameObject.Find("Player Graphics").GetComponent(Bow).bullet = GameObject.Find("Bow").GetComponent(Bow).bullet;
 					GameObject.Find("Player Graphics").GetComponent(Bow).arrows = 5;
+					if (GameObject.Find("Player").GetComponent(PlayerBehavior).firstBow)
+						GameObject.Find("Player").GetComponent(PlayerBehavior).showBowText = true;
+					GameObject.Find("Player").GetComponent(PlayerBehavior).firstBow = false;
 				}
 			}
 		}

@@ -12,6 +12,11 @@ var guiSkin : GUISkin;
 var guiSkin2 : GUISkin;
 var canZoom = true;
 var gos : GameObject[];
+var firstBow = true;
+var showBowText = false;
+var showBowText2 = false;
+var showBowText3 = false;
+var bowTextOver = false;
 
 function Start ()
 {
@@ -20,6 +25,8 @@ function Start ()
 
 function Update ()
 {
+	if (showBowText || showBowText2 || showBowText3)
+		return;
 	moveTimer ++;
 	if (firstFrame || (!hasMoved && !firstFrame))
 	{
@@ -344,5 +351,63 @@ function OnGUI ()
 		GUI.skin = guiSkin;
 		GUI.color = Color.black;
 		GUI.Label (Rect (10, 10, 500, 40), "Health: " + hp + " / " + maxHP);
+	}
+	if (showBowText)
+	{
+		// An absolute-positioned example: We make a scrollview that has a really large client
+		// rect and put it in a small rect on the screen.
+		scrollPosition = GUI.BeginScrollView (Rect (Screen.width / 2 - 375, Screen.height - 150, 750, 150),
+			scrollPosition, Rect (0, 0, 725, 150));
+		
+		// Make four buttons - one in each corner. The coordinate system is defined
+		// by the last parameter to BeginScrollView.
+		//GUI.backgroundColor = Color.gray;
+		GUI.color = Color.cyan;
+	GUI.Box(Rect(0, 0, 725, 25), "Congratz! You have earned your first bow!");
+		GUI.color = Color.green;
+		GUI.Box(Rect(0, 25, 725, 25), "Press '2' to switch from using your sword to using your bow");
+		// End the scroll view that we began above.
+		GUI.EndScrollView ();
+		if (Input.GetAxis("Ranged") == 1)
+		{
+			showBowText2 = true;
+			showBowText = false;
+		}
+	}
+	else if (showBowText3)
+	{
+		showBowText2 = false;
+		// An absolute-positioned example: We make a scrollview that has a really large client
+		// rect and put it in a small rect on the screen.
+		scrollPosition = GUI.BeginScrollView (Rect (Screen.width / 2 - 375, Screen.height - 150, 750, 150),
+			scrollPosition, Rect (0, 0, 725, 150));
+		
+		// Make four buttons - one in each corner. The coordinate system is defined
+		// by the last parameter to BeginScrollView.
+		//GUI.backgroundColor = Color.gray;
+		//GUI.color = Color.cyan;
+		//GUI.Box(Rect(0, 0, 725, 25), "Congratz! You have earned your first bow!");
+		GUI.color = Color.green;
+		GUI.Box(Rect(0, 0, 725, 25), "Remember that your arrow supply is limited; it is displayed in the top-left corner of the screen");
+		GUI.Box(Rect(0, 25, 725, 25), "Press '1' to switch back to using your sword (cannot be done untill you are ready to shoot the next arrow)");
+		// End the scroll view that we began above.
+		GUI.EndScrollView ();
+	}
+	else if (showBowText2)
+	{
+		// An absolute-positioned example: We make a scrollview that has a really large client
+		// rect and put it in a small rect on the screen.
+		scrollPosition = GUI.BeginScrollView (Rect (Screen.width / 2 - 375, Screen.height - 150, 750, 150),
+			scrollPosition, Rect (0, 0, 725, 150));
+		
+		// Make four buttons - one in each corner. The coordinate system is defined
+		// by the last parameter to BeginScrollView.
+		//GUI.backgroundColor = Color.gray;
+		//GUI.color = Color.cyan;
+		//GUI.Box(Rect(0, 0, 725, 25), "Congratz! You have earned your first bow!");
+		GUI.color = Color.green;
+		GUI.Box(Rect(0, 0, 725, 25), "Hold one of the 8 keys surrounding the 'S' on the numpad to shoot in that direction (pretend you are standing on the 'S')");
+		// End the scroll view that we began above.
+		GUI.EndScrollView ();
 	}
 }
