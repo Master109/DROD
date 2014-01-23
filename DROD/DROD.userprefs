@@ -5,7 +5,7 @@
       <File FileName="Assets\Bullet.js" Line="1" Column="1" />
       <File FileName="Assets\Bow.js" Line="1" Column="1" />
       <File FileName="Assets\SkeletonArcher.js" Line="1" Column="1" />
-      <File FileName="Assets\PlayerBehavior.js" Line="398" Column="4" />
+      <File FileName="Assets\PlayerBehavior.js" Line="345" Column="72" />
       <File FileName="Assets\SwitchItems.js" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
