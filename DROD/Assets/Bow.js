@@ -1,7 +1,7 @@
 ﻿#pragma strict
 
 var canControl = true;
-var arrows = 10;
+var arrows = 0;
 var damage = 1;
 var shootForce = 75;
 var range = 5;
@@ -33,7 +33,7 @@ function Update ()
 		go.GetComponent(Bullet).vel = Vector3(MOVE_DIST, 0, 0);
 		go.GetComponent(Bullet).moveRate = shootForce;
 		go.GetComponent(Bullet).destination = transform.position + (go.GetComponent(Bullet).vel * range);
-		arrows --;
+		arrows --; GameObject.Find("Player").GetComponent(PlayerBehavior).showBowText3 = true;
 		shootTimer = 0;
 	}
 	else if (Input.GetAxis("ShootHorizontal") == -1)
@@ -44,7 +44,7 @@ function Update ()
 		go.GetComponent(Bullet).vel = Vector3(-MOVE_DIST, 0, 0);
 		go.GetComponent(Bullet).moveRate = shootForce;
 		go.GetComponent(Bullet).destination = transform.position + (go.GetComponent(Bullet).vel * range);
-		arrows --;
+		arrows --; GameObject.Find("Player").GetComponent(PlayerBehavior).showBowText3 = true;
 		shootTimer = 0;
 	}
 	else if (Input.GetAxis("ShootVertical") == 1)
@@ -55,7 +55,7 @@ function Update ()
 		go.GetComponent(Bullet).vel = Vector3(0, 0, MOVE_DIST);
 		go.GetComponent(Bullet).moveRate = shootForce;
 		go.GetComponent(Bullet).destination = transform.position + (go.GetComponent(Bullet).vel * range);
-		arrows --;
+		arrows --; GameObject.Find("Player").GetComponent(PlayerBehavior).showBowText3 = true;
 		shootTimer = 0;
 	}
 	else if (Input.GetAxis("ShootVertical") == -1)
@@ -66,7 +66,7 @@ function Update ()
 		go.GetComponent(Bullet).vel = Vector3(0, 0, -MOVE_DIST);
 		go.GetComponent(Bullet).moveRate = shootForce;
 		go.GetComponent(Bullet).destination = transform.position + (go.GetComponent(Bullet).vel * range);
-		arrows --;
+		arrows --; GameObject.Find("Player").GetComponent(PlayerBehavior).showBowText3 = true;
 		shootTimer = 0;
 	}
 	else if (Input.GetAxis("ShootDiagonal45") == 1)
@@ -77,7 +77,7 @@ function Update ()
 		go.GetComponent(Bullet).vel = Vector3(MOVE_DIST, 0, MOVE_DIST);
 		go.GetComponent(Bullet).moveRate = shootForce;
 		go.GetComponent(Bullet).destination = transform.position + (go.GetComponent(Bullet).vel * range);
-		arrows --;
+		arrows --; GameObject.Find("Player").GetComponent(PlayerBehavior).showBowText3 = true;
 		shootTimer = 0;
 	}
 	else if (Input.GetAxis("ShootDiagonal45") == -1)
@@ -88,7 +88,7 @@ function Update ()
 		go.GetComponent(Bullet).vel = Vector3(-MOVE_DIST, 0, -MOVE_DIST);
 		go.GetComponent(Bullet).moveRate = shootForce;
 		go.GetComponent(Bullet).destination = transform.position + (go.GetComponent(Bullet).vel * range);
-		arrows --;
+		arrows --; GameObject.Find("Player").GetComponent(PlayerBehavior).showBowText3 = true;
 		shootTimer = 0;
 	}
 	else if (Input.GetAxis("ShootDiagonal315") == 1)
@@ -99,7 +99,7 @@ function Update ()
 		go.GetComponent(Bullet).vel = Vector3(MOVE_DIST, 0, -MOVE_DIST);
 		go.GetComponent(Bullet).moveRate = shootForce;
 		go.GetComponent(Bullet).destination = transform.position + (go.GetComponent(Bullet).vel * range);
-		arrows --;
+		arrows --; GameObject.Find("Player").GetComponent(PlayerBehavior).showBowText3 = true;
 		shootTimer = 0;
 	}
 	else if (Input.GetAxis("ShootDiagonal315") == -1)
@@ -110,7 +110,7 @@ function Update ()
 		go.GetComponent(Bullet).vel = Vector3(-MOVE_DIST, 0, MOVE_DIST);
 		go.GetComponent(Bullet).moveRate = shootForce;
 		go.GetComponent(Bullet).destination = transform.position + (go.GetComponent(Bullet).vel * range);
-		arrows --;
+		arrows --; GameObject.Find("Player").GetComponent(PlayerBehavior).showBowText3 = true;
 		shootTimer = 0;
 	}
 	}
@@ -118,7 +118,9 @@ function Update ()
 
 function OnGUI ()
 {
+	if (!canControl)
+		return;
 	GUI.skin = guiSkin;
 	GUI.color = Color.black;
-	GUI.Label (Rect (10, 50, 500, 40), "Arrows: " + arrows);
+	GUI.Label (Rect (10, 30, 500, 40), "Arrows: " + arrows);
 }

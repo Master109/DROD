@@ -392,6 +392,11 @@ function OnGUI ()
 		GUI.Box(Rect(0, 25, 725, 25), "Press '1' to switch back to using your sword (cannot be done untill you are ready to shoot the next arrow)");
 		// End the scroll view that we began above.
 		GUI.EndScrollView ();
+		if (Input.GetAxis("Sword") == 1)
+		{
+			showBowText3 = false;
+			bowTextOver = true;
+		}
 	}
 	else if (showBowText2)
 	{
@@ -409,8 +414,5 @@ function OnGUI ()
 		GUI.Box(Rect(0, 0, 725, 25), "Hold one of the 8 keys surrounding the 'S' on the numpad to shoot in that direction (pretend you are standing on the 'S')");
 		// End the scroll view that we began above.
 		GUI.EndScrollView ();
-		
-		if (Input.GetAxis("ShootHorizontal") != 0 || Input.GetAxis("ShootVertical") != 0 || Input.GetAxis("ShootDiagonal45") != 0 || Input.GetAxis("ShootDiagonal315") != 0)
-			 showBowText3 = true;
 	}
 }

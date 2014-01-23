@@ -39,9 +39,17 @@ function OnTriggerStay (other : Collider)
 	{
 		Destroy(gameObject);
 		if (other.gameObject.name == "Roach")
+		{
 			other.gameObject.GetComponent(RoachBehavior).hp -= damage;
+			if (other.gameObject.GetComponent(RoachBehavior).hp <= 0)
+				Destroy(other.gameObject);
+		}
 		else if (other.gameObject.name == "SkeletonArcher")
+		{
 			other.gameObject.GetComponent(SkeletonArcher).hp -= damage;
+			if (other.gameObject.GetComponent(SkeletonArcher).hp <= 0)
+				Destroy(other.gameObject);
+		}
 	}
 	}
 }
