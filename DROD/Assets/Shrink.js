@@ -18,6 +18,6 @@ function Update ()
 		transform.localScale.y -= shrinkRate;
 		transform.localScale.z -= shrinkRate;
 		if (transform.lossyScale.x <= 0)
-			Destroy(gameObject);
+			gameObject.active = false;
 	}
 }

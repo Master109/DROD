@@ -2,6 +2,7 @@
 
 var pairID = 0;
 var teleport = false;
+var sceneID = -1;
 var gos : GameObject[];
 
 function Start ()
@@ -18,10 +19,12 @@ function AreaChange ()
 {
 	if (transform.position.x == GameObject.Find("Player Graphics").transform.position.x && transform.position.z == GameObject.Find("Player Graphics").transform.position.z)
 	{
+		if (teleport && pairID != 0)
+		{
 		gos = GameObject.FindGameObjectsWithTag("EndZone");
 		for (var go : GameObject in gos)
 		{
-			if (teleport && gameObject != go && pairID == go.GetComponent(EndZone).pairID)
+			if (gameObject != go && pairID == go.GetComponent(EndZone).pairID)
 			{
 				GameObject.Find("Player").transform.position.x += go.transform.position.x - GameObject.Find("Player Graphics").transform.position.x;
 				GameObject.Find("Player").transform.position.z += go.transform.position.z - GameObject.Find("Player Graphics").transform.position.z;
@@ -62,6 +65,18 @@ function AreaChange ()
 				}
 			}
 			gos = GameObject.FindGameObjectsWithTag("EndZone");
+		}
+		}
+		else if (sceneID != -1)
+		{
+			Application.DontDestroyOnLoad(GameObject.Find("Player"));
+			Application.DontDestroyOnLoad(GameObject.Find("MainCamera"));
+			Application.LoadLevel(sceneID);
+			if (Application.loadedLevel == 1)
+				GameObject.Find("Text").GetComponent(TextMesh).text = Application.loadedLevelName;
+			GameObject.Find("Text").GetComponent(Shrink).delayTimer = 0;
+			GameObject.Find("Text").transform.localScale = Vector3(1, 1, 1);
+			GameObject.Find("Text").active = true;
 		}
 	}
 }

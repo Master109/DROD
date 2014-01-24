@@ -17,15 +17,17 @@ var showBowText = false;
 var showBowText2 = false;
 var showBowText3 = false;
 var bowTextOver = false;
+var paused = false;
 
 function Start ()
 {
-	
+	//Screen.SetResolution(100,100,true);
+	//Screen.fullScreen = true;
 }
 
 function Update ()
 {
-	if (showBowText || showBowText2 || showBowText3)
+	if (paused || showBowText || showBowText2 || showBowText3)
 		return;
 	moveTimer ++;
 	if (firstFrame || (!hasMoved && !firstFrame))
@@ -43,6 +45,9 @@ function Update ()
 			else if (go.name == "SkeletonArcher" && !go.GetComponent(SkeletonArcher).awoken)
 				go.GetComponent(SkeletonArcher).CheckForPlayer();
 		}
+		gos = GameObject.FindGameObjectsWithTag("Character");
+		for (var go : GameObject in gos)
+			go.GetComponent(Character).CheckForPlayer();
 		if (Physics.Raycast (Vector3(transform.position.x, 5, transform.position.z), Vector3.down, hit, 10, 1) && hit.collider.gameObject.tag == "EndZone")
 			hit.collider.gameObject.GetComponent(EndZone).AreaChange();
 		if (firstFrame)
@@ -312,6 +317,9 @@ function OnGUI ()
 	GUI.skin = guiSkin2;
 	if (firstFrame)
 	{
+		//GUI.color = Color.black;
+		//GUI.Box(Rect(0, 0, 1000, 25), "THIS GAME IS BARELY IN ITS BEGGINING STAGES -- NO TROLLING");
+		//GUI.Box(Rect(0, 25, 1000, 25), "RIGHT CLICK AND PRESS 'GO FULLSCREEN' FOR NO LAG");
 		// An absolute-positioned example: We make a scrollview that has a really large client
 		// rect and put it in a small rect on the screen.
 		scrollPosition = GUI.BeginScrollView (Rect (Screen.width / 2 - 375, Screen.height - 150, 750, 150),
@@ -325,7 +333,7 @@ function OnGUI ()
 		GUI.Box(Rect(0, 25, 725, 25), "You see that you are standing in a dense forest");
 		GUI.Box(Rect(0, 50, 725, 25), "Suddenly, without you telling it to, your body starts to move");
 		GUI.color = Color.green;
-		GUI.Box(Rect(0, 75, 725, 25), "Hold one of the 8 keys surrounding the '5' on the numpad to move in that direction (pretend you are standing on the '5')");
+		GUI.Box(Rect(0, 75, 725, 25), "Hold one of the 8 keys surrounding the [5] on the numpad to move in that direction (pretend you are standing on the [5])");
 		// End the scroll view that we began above.
 		GUI.EndScrollView ();
 		if (hasMoved)
@@ -342,7 +350,7 @@ function OnGUI ()
 		// by the last parameter to BeginScrollView.
 		//GUI.backgroundColor = Color.gray;
 		GUI.color = Color.green;
-		GUI.Box(Rect(0, 0, 725, 25), "Hold 'Q' or 'W' to rotate your sword");
+		GUI.Box(Rect(0, 0, 725, 25), "Hold [Q] or [W] to rotate your sword");
 		// End the scroll view that we began above.
 		GUI.EndScrollView ();
 	}
@@ -363,9 +371,9 @@ function OnGUI ()
 		// by the last parameter to BeginScrollView.
 		//GUI.backgroundColor = Color.gray;
 		GUI.color = Color.cyan;
-	GUI.Box(Rect(0, 0, 725, 25), "Congratz! You have earned your first bow!");
+		GUI.Box(Rect(0, 0, 725, 25), "Congratz! You have earned your first bow!");
 		GUI.color = Color.green;
-		GUI.Box(Rect(0, 25, 725, 25), "Press '2' to switch from using your sword to using your bow");
+		GUI.Box(Rect(0, 25, 725, 25), "Press [2] to switch from using your sword to using your bow");
 		// End the scroll view that we began above.
 		GUI.EndScrollView ();
 		if (Input.GetAxis("Ranged") == 1)
@@ -389,7 +397,7 @@ function OnGUI ()
 		//GUI.Box(Rect(0, 0, 725, 25), "Congratz! You have earned your first bow!");
 		GUI.color = Color.green;
 		GUI.Box(Rect(0, 0, 725, 25), "Remember that your arrow supply is limited; it is displayed in the top-left corner of the screen");
-		GUI.Box(Rect(0, 25, 725, 25), "Press '1' to switch back to using your sword (cannot be done untill you are ready to shoot the next arrow)");
+		GUI.Box(Rect(0, 25, 725, 25), "Hold [1] to switch back to using your sword (cannot be done untill you are ready to shoot the next arrow)");
 		// End the scroll view that we began above.
 		GUI.EndScrollView ();
 		if (Input.GetAxis("Sword") == 1)
@@ -411,7 +419,7 @@ function OnGUI ()
 		//GUI.color = Color.cyan;
 		//GUI.Box(Rect(0, 0, 725, 25), "Congratz! You have earned your first bow!");
 		GUI.color = Color.green;
-		GUI.Box(Rect(0, 0, 725, 25), "Hold one of the 8 keys surrounding the 'S' on the numpad to shoot in that direction (pretend you are standing on the 'S')");
+		GUI.Box(Rect(0, 0, 725, 25), "Hold one of the 8 keys surrounding the [S] on the numpad to shoot in that direction (pretend you are standing on the [S] key)");
 		// End the scroll view that we began above.
 		GUI.EndScrollView ();
 	}
