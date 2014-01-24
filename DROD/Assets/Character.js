@@ -71,12 +71,7 @@ function OnTriggerStay (other : Collider)
 
 function OnTriggerExit (other : Collider)
 {
-	if (paused)
-		return;
-	if (other.gameObject.name == "Player Graphics")
-		attackTimer = attackRate;
-	else if (other.gameObject.name == "Player Sword")
-		playerAttackTimer = playerAttackRate;
+	
 }
 
 var scrollPosition : Vector2 = Vector2(Screen.width / 2, -Screen.height + 150);
@@ -110,7 +105,7 @@ function OnGUI ()
 		GUI.color = Color.cyan;
 		GUI.Box(Rect(0, 175, 725, 25), "Abruptly, they both fall asleep");
 		GUI.color = Color.green;
-		GUI.Box(Rect(0, 200, 725, 25), "Press [ENTER] to continue");
+		GUI.Box(Rect(0, 200, 725, 25), "Press [SPACE] to continue");
 		if (Input.GetAxis("ContinueDialog") == 1)
 		{
 			Destroy(gameObject);

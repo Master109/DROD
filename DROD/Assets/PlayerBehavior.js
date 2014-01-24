@@ -21,8 +21,16 @@ var paused = false;
 
 function Start ()
 {
-	//Screen.SetResolution(100,100,true);
-	//Screen.fullScreen = true;
+	hp = PlayerPrefs.GetInt("HP", maxHP);
+	maxHP = PlayerPrefs.GetInt("Max HP", maxHP);
+	bowTextOver = boolean.Parse(PlayerPrefs.GetString("Has Bow", "" + bowTextOver));
+	if (bowTextOver)
+	{
+		firstBow = false;
+		GameObject.Find("Player Graphics").AddComponent(Bow);
+		GameObject.Find("Player Graphics").GetComponent(Bow).bullet = GameObject.Find("Bow").GetComponent(Bow).bullet;
+		GameObject.Find("Player Graphics").GetComponent(Bow).arrows = PlayerPrefs.GetInt("Arrows", 5);
+	}
 }
 
 function Update ()
@@ -44,8 +52,7 @@ function Update ()
 				go.GetComponent(RoachBehavior).CheckForPlayer();
 			else if (go.name == "SkeletonArcher" && !go.GetComponent(SkeletonArcher).awoken)
 				go.GetComponent(SkeletonArcher).CheckForPlayer();
-		}
-		gos = GameObject.FindGameObjectsWithTag("Character");
+		} gos = GameObject.FindGameObjectsWithTag("Character");
 		for (var go : GameObject in gos)
 			go.GetComponent(Character).CheckForPlayer();
 		if (Physics.Raycast (Vector3(transform.position.x, 5, transform.position.z), Vector3.down, hit, 10, 1) && hit.collider.gameObject.tag == "EndZone")
@@ -65,7 +72,9 @@ function Update ()
 				go.GetComponent(RoachBehavior).CheckForPlayer();
 			else if (go.name == "SkeletonArcher" && !go.GetComponent(SkeletonArcher).awoken)
 				go.GetComponent(SkeletonArcher).CheckForPlayer();
-		}
+		} gos = GameObject.FindGameObjectsWithTag("Character");
+		for (var go : GameObject in gos)
+			go.GetComponent(Character).CheckForPlayer();
 		if (Physics.Raycast (Vector3(transform.position.x, 5, transform.position.z), Vector3.down, hit, 10, 1) && hit.collider.gameObject.tag == "EndZone")
 			hit.collider.gameObject.GetComponent(EndZone).AreaChange();
 		if (firstFrame)
@@ -83,7 +92,9 @@ function Update ()
 				go.GetComponent(RoachBehavior).CheckForPlayer();
 			else if (go.name == "SkeletonArcher" && !go.GetComponent(SkeletonArcher).awoken)
 				go.GetComponent(SkeletonArcher).CheckForPlayer();
-		}
+		} gos = GameObject.FindGameObjectsWithTag("Character");
+		for (var go : GameObject in gos)
+			go.GetComponent(Character).CheckForPlayer();
 		if (Physics.Raycast (Vector3(transform.position.x, 5, transform.position.z), Vector3.down, hit, 10, 1) && hit.collider.gameObject.tag == "EndZone")
 			hit.collider.gameObject.GetComponent(EndZone).AreaChange();
 		if (firstFrame)
@@ -101,7 +112,9 @@ function Update ()
 				go.GetComponent(RoachBehavior).CheckForPlayer();
 			else if (go.name == "SkeletonArcher" && !go.GetComponent(SkeletonArcher).awoken)
 				go.GetComponent(SkeletonArcher).CheckForPlayer();
-		}
+		} gos = GameObject.FindGameObjectsWithTag("Character");
+		for (var go : GameObject in gos)
+			go.GetComponent(Character).CheckForPlayer();
 		if (Physics.Raycast (Vector3(transform.position.x, 5, transform.position.z), Vector3.down, hit, 10, 1) && hit.collider.gameObject.tag == "EndZone")
 			hit.collider.gameObject.GetComponent(EndZone).AreaChange();
 		if (firstFrame)
@@ -121,7 +134,9 @@ function Update ()
 				go.GetComponent(RoachBehavior).CheckForPlayer();
 			else if (go.name == "SkeletonArcher" && !go.GetComponent(SkeletonArcher).awoken)
 				go.GetComponent(SkeletonArcher).CheckForPlayer();
-		}
+		} gos = GameObject.FindGameObjectsWithTag("Character");
+		for (var go : GameObject in gos)
+			go.GetComponent(Character).CheckForPlayer();
 		if (Physics.Raycast (Vector3(transform.position.x, 5, transform.position.z), Vector3.down, hit, 10, 1) && hit.collider.gameObject.tag == "EndZone")
 			hit.collider.gameObject.GetComponent(EndZone).AreaChange();
 		if (firstFrame)
@@ -141,7 +156,9 @@ function Update ()
 				go.GetComponent(RoachBehavior).CheckForPlayer();
 			else if (go.name == "SkeletonArcher" && !go.GetComponent(SkeletonArcher).awoken)
 				go.GetComponent(SkeletonArcher).CheckForPlayer();
-		}
+		} gos = GameObject.FindGameObjectsWithTag("Character");
+		for (var go : GameObject in gos)
+			go.GetComponent(Character).CheckForPlayer();
 		if (Physics.Raycast (Vector3(transform.position.x, 5, transform.position.z), Vector3.down, hit, 10, 1) && hit.collider.gameObject.tag == "EndZone")
 			hit.collider.gameObject.GetComponent(EndZone).AreaChange();
 		if (firstFrame)
@@ -161,7 +178,9 @@ function Update ()
 				go.GetComponent(RoachBehavior).CheckForPlayer();
 			else if (go.name == "SkeletonArcher" && !go.GetComponent(SkeletonArcher).awoken)
 				go.GetComponent(SkeletonArcher).CheckForPlayer();
-		}
+		} gos = GameObject.FindGameObjectsWithTag("Character");
+		for (var go : GameObject in gos)
+			go.GetComponent(Character).CheckForPlayer();
 		if (Physics.Raycast (Vector3(transform.position.x, 5, transform.position.z), Vector3.down, hit, 10, 1) && hit.collider.gameObject.tag == "EndZone")
 			hit.collider.gameObject.GetComponent(EndZone).AreaChange();
 		if (firstFrame)
@@ -181,7 +200,9 @@ function Update ()
 				go.GetComponent(RoachBehavior).CheckForPlayer();
 			else if (go.name == "SkeletonArcher" && !go.GetComponent(SkeletonArcher).awoken)
 				go.GetComponent(SkeletonArcher).CheckForPlayer();
-		}
+		} gos = GameObject.FindGameObjectsWithTag("Character");
+		for (var go : GameObject in gos)
+			go.GetComponent(Character).CheckForPlayer();
 		if (Physics.Raycast (Vector3(transform.position.x, 5, transform.position.z), Vector3.down, hit, 10, 1) && hit.collider.gameObject.tag == "EndZone")
 			hit.collider.gameObject.GetComponent(EndZone).AreaChange();
 		if (firstFrame)
@@ -307,6 +328,14 @@ function Update ()
 	}
 	else if (Input.GetAxis("Zoom") == 0)
 		canZoom = true;
+	if (Input.GetAxis("Pause") == 1)
+	{
+		PlayerPrefs.SetInt("HP", hp);
+		PlayerPrefs.SetInt("Max HP", maxHP);
+		PlayerPrefs.SetString("Has Bow", "" + bowTextOver);
+		if (GameObject.Find("Player Graphics").GetComponent(Bow) != null)
+			PlayerPrefs.SetInt("Arrows", GameObject.Find("Player Graphics").GetComponent(Bow).arrows);
+	}
 }
 
 // The position on of the scrolling viewport
