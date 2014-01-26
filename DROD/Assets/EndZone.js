@@ -4,6 +4,7 @@ var pairID = 0;
 var teleport = false;
 var sceneID = -1;
 var gos : GameObject[];
+//var go : GameObject;
 
 function Start ()
 {
@@ -48,6 +49,10 @@ function AreaChange ()
 								else if (go4.name == "SkeletonArcher")
 									go4.GetComponent(SkeletonArcher).paused = false;
 							}
+						gos = GameObject.FindGameObjectsWithTag("Bullet");
+						for (var go6 : GameObject in gos)
+							if (go6.transform.position.x > (go3.transform.position.x + go3.GetComponent(BoxCollider).center.x) - go3.GetComponent(BoxCollider).size.x / 2 && go6.transform.position.x < (go3.transform.position.x + go3.GetComponent(BoxCollider).center.x) + go3.GetComponent(BoxCollider).size.x / 2 && go6.transform.position.z > (go3.transform.position.z + go3.GetComponent(BoxCollider).center.z) - go3.GetComponent(BoxCollider).size.z / 2 && go6.transform.position.z < (go3.transform.position.z + go3.GetComponent(BoxCollider).center.z) + go3.GetComponent(BoxCollider).size.z / 2)
+								go6.GetComponent(Bullet).paused = false;
 					}
 					else
 					{
@@ -60,6 +65,10 @@ function AreaChange ()
 								else if (go5.name == "SkeletonArcher")
 									go5.GetComponent(SkeletonArcher).paused = true;
 							}
+						gos = GameObject.FindGameObjectsWithTag("Bullet");
+						for (var go6 : GameObject in gos)
+							if (go6.transform.position.x > (go3.transform.position.x + go3.GetComponent(BoxCollider).center.x) - go3.GetComponent(BoxCollider).size.x / 2 && go6.transform.position.x < (go3.transform.position.x + go3.GetComponent(BoxCollider).center.x) + go3.GetComponent(BoxCollider).size.x / 2 && go6.transform.position.z > (go3.transform.position.z + go3.GetComponent(BoxCollider).center.z) - go3.GetComponent(BoxCollider).size.z / 2 && go6.transform.position.z < (go3.transform.position.z + go3.GetComponent(BoxCollider).center.z) + go3.GetComponent(BoxCollider).size.z / 2)
+								go6.GetComponent(Bullet).paused = true;
 					}
 					gos = GameObject.FindGameObjectsWithTag("Area");
 				}
@@ -67,16 +76,11 @@ function AreaChange ()
 			gos = GameObject.FindGameObjectsWithTag("EndZone");
 		}
 		}
-		else if (sceneID != -1)
+		else if (sceneID > -1)
 		{
 			Application.DontDestroyOnLoad(GameObject.Find("Player"));
 			Application.DontDestroyOnLoad(GameObject.Find("MainCamera"));
 			Application.LoadLevel(sceneID);
-			if (Application.loadedLevel == 1)
-				GameObject.Find("Text").GetComponent(TextMesh).text = Application.loadedLevelName;
-			GameObject.Find("Text").GetComponent(Shrink).delayTimer = 0;
-			GameObject.Find("Text").transform.localScale = Vector3(1, 1, 1);
-			GameObject.Find("Text").active = true;
 		}
 	}
 }

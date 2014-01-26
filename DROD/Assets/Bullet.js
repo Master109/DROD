@@ -8,6 +8,7 @@ var damage = 1;
 var destination : Vector3;
 var extraRange = 0;
 var shooter : GameObject;
+var paused = false;
 
 function Start ()
 {
@@ -16,6 +17,8 @@ function Start ()
 
 function Update ()
 {
+	if (paused || GameObject.Find("Player").GetComponent(PlayerBehavior).inPauseMenu || GameObject.Find("Player").GetComponent(PlayerBehavior).showBowText || GameObject.Find("Player").GetComponent(PlayerBehavior).showBowText2 || GameObject.Find("Player").GetComponent(PlayerBehavior).showBowText3)
+		return;
 	moveTimer ++;
 	if (moveTimer > moveRate)
 	{

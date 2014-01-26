@@ -10,11 +10,13 @@ function Start ()
 
 function Update ()
 {
-	if (Input.GetAxis("Sword") == 1 && (GameObject.Find("Player").GetComponent(PlayerBehavior).showBowText3 || GameObject.Find("Player").GetComponent(PlayerBehavior).bowTextOver))
+	if (GameObject.Find("Player").GetComponent(PlayerBehavior).inPauseMenu)
+		return;
+	if (Input.GetAxisRaw("Sword") == 1 && (GameObject.Find("Player").GetComponent(PlayerBehavior).showBowText3 || GameObject.Find("Player").GetComponent(PlayerBehavior).bowTextOver))
 	{
 		shouldUseSword1 = true;
 	}
-	else if (Input.GetAxis("Ranged") == 1 && !GameObject.Find("Player").GetComponent(PlayerBehavior).firstBow)
+	else if (Input.GetAxisRaw("Ranged") == 1 && !GameObject.Find("Player").GetComponent(PlayerBehavior).firstBow)
 	{
 		GameObject.Find("Player Sword").collider.enabled = false;
 		GameObject.Find("Player Sword").renderer.enabled = false;

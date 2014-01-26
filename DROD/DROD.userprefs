@@ -3,13 +3,13 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\PlayerBehavior.js">
     <Files>
       <File FileName="Assets\Bullet.js" Line="1" Column="1" />
-      <File FileName="Assets\Bow.js" Line="1" Column="1" />
-      <File FileName="Assets\SkeletonArcher.js" Line="415" Column="128" />
-      <File FileName="Assets\PlayerBehavior.js" Line="337" Column="30" />
-      <File FileName="Assets\EndZone.js" Line="1" Column="1" />
+      <File FileName="Assets\Bow.js" Line="22" Column="84" />
+      <File FileName="Assets\SkeletonArcher.js" Line="31" Column="306" />
+      <File FileName="Assets\PlayerBehavior.js" Line="418" Column="42" />
+      <File FileName="Assets\EndZone.js" Line="55" Column="48" />
       <File FileName="Assets\SwitchItems.js" Line="1" Column="1" />
-      <File FileName="Assets\Shrink.js" Line="22" Column="3" />
-      <File FileName="Assets\Character.js" Line="84" Column="22" />
+      <File FileName="Assets\Shrink.js" Line="1" Column="1" />
+      <File FileName="Assets\Character.js" Line="1" Column="1" />
       <File FileName="Assets\RoachBehavior.js" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>

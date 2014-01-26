@@ -20,7 +20,7 @@ function Start ()
 
 function Update ()
 {
-	if (!awoken || paused || GameObject.Find("Player").GetComponent(PlayerBehavior).showBowText || GameObject.Find("Player").GetComponent(PlayerBehavior).showBowText2 || GameObject.Find("Player").GetComponent(PlayerBehavior).showBowText3)
+	if (!awoken || paused || GameObject.Find("Player").GetComponent(PlayerBehavior).inPauseMenu || GameObject.Find("Player").GetComponent(PlayerBehavior).showBowText || GameObject.Find("Player").GetComponent(PlayerBehavior).showBowText2 || GameObject.Find("Player").GetComponent(PlayerBehavior).showBowText3)
 		return;
 	moveTimer ++;
 	if (moveTimer > moveRate)
@@ -39,7 +39,7 @@ function Update ()
 
 function CheckForPlayer ()
 {
-	if (paused)
+	if (paused || GameObject.Find("Player").GetComponent(PlayerBehavior).inPauseMenu || GameObject.Find("Player").GetComponent(PlayerBehavior).showBowText || GameObject.Find("Player").GetComponent(PlayerBehavior).showBowText2 || GameObject.Find("Player").GetComponent(PlayerBehavior).showBowText3)
 		return;
 	var vector = transform.position;
 	for (var i = 0; i < awakeRadius; i ++)
@@ -77,7 +77,7 @@ function CheckForPlayer ()
 
 function OnTriggerStay (other : Collider)
 {
-	if (paused)
+	if (paused || GameObject.Find("Player").GetComponent(PlayerBehavior).inPauseMenu || GameObject.Find("Player").GetComponent(PlayerBehavior).showBowText || GameObject.Find("Player").GetComponent(PlayerBehavior).showBowText2 || GameObject.Find("Player").GetComponent(PlayerBehavior).showBowText3)
 		return;
 	attackTimer ++;
 	playerAttackTimer ++;
@@ -99,7 +99,7 @@ function OnTriggerStay (other : Collider)
 
 function OnTriggerExit (other : Collider)
 {
-	if (paused)
+	if (paused || GameObject.Find("Player").GetComponent(PlayerBehavior).inPauseMenu || GameObject.Find("Player").GetComponent(PlayerBehavior).showBowText || GameObject.Find("Player").GetComponent(PlayerBehavior).showBowText2 || GameObject.Find("Player").GetComponent(PlayerBehavior).showBowText3)
 		return;
 	if (other.gameObject.name == "Player Graphics")
 		attackTimer = attackRate;

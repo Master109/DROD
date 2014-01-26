@@ -18,6 +18,9 @@ var showBowText2 = false;
 var showBowText3 = false;
 var bowTextOver = false;
 var paused = false;
+var lastLoadedLevel = 0;
+var inPauseMenu = false;
+var togglePauseMenu = false;
 
 function Start ()
 {
@@ -31,16 +34,38 @@ function Start ()
 		GameObject.Find("Player Graphics").GetComponent(Bow).bullet = GameObject.Find("Bow").GetComponent(Bow).bullet;
 		GameObject.Find("Player Graphics").GetComponent(Bow).arrows = PlayerPrefs.GetInt("Arrows", 5);
 	}
+	if (PlayerPrefs.GetInt("Scene", 0) != Application.loadedLevel)
+		Application.LoadLevel(PlayerPrefs.GetInt("Scene", 0));
+	transform.position.x = PlayerPrefs.GetInt("X", transform.position.x);
+	transform.position.z = PlayerPrefs.GetInt("Z", transform.position.z);
 }
 
 function Update ()
 {
-	if (paused || showBowText || showBowText2 || showBowText3)
+	if (Input.GetAxisRaw("Pause") == 0)
+		togglePauseMenu = true;
+	else if (Input.GetAxisRaw("Pause") == 1 && togglePauseMenu)
+	{
+		inPauseMenu = !inPauseMenu;
+		//if (inPauseMenu)
+		//	Time.timeScale = 0;
+		//else
+		//	Time.timeScale = 1;
+		togglePauseMenu = false;
+	}
+	if (paused || inPauseMenu || showBowText || showBowText2 || showBowText3)
 		return;
+	if (Application.loadedLevel != lastLoadedLevel)
+	{
+		lastLoadedLevel = Application.loadedLevel;
+		GameObject.Find("Text").GetComponent(TextMesh).text = Application.loadedLevelName;
+		GameObject.Find("Text").GetComponent(Shrink).delayTimer = 0;
+		GameObject.Find("Text").transform.localScale = Vector3(1, 1, 1);
+	}
 	moveTimer ++;
 	if (firstFrame || (!hasMoved && !firstFrame))
 	{
-	if (Input.GetAxis("Horizontal") == 1 && moveTimer > moveRate && Physics.Raycast (Vector3(transform.position.x + MOVE_DIST, 5, transform.position.z), Vector3.down, hit, 10, 1) && hit.collider != null)
+	if (Input.GetAxisRaw("Horizontal") == 1 && moveTimer > moveRate && Physics.Raycast (Vector3(transform.position.x + MOVE_DIST, 5, transform.position.z), Vector3.down, hit, 10, 1) && hit.collider != null)
 	{
 		transform.position.x += MOVE_DIST;
 		//GameObject.Find("Player Sword").transform.position.x += MOVE_DIST;
@@ -60,7 +85,7 @@ function Update ()
 		if (firstFrame)
 		hasMoved = true;
 	}
-	else if (Input.GetAxis("Horizontal") == -1 && moveTimer > moveRate && Physics.Raycast (Vector3(transform.position.x - MOVE_DIST, 5, transform.position.z), Vector3.down, hit, 10, 1) && hit.collider != null)
+	else if (Input.GetAxisRaw("Horizontal") == -1 && moveTimer > moveRate && Physics.Raycast (Vector3(transform.position.x - MOVE_DIST, 5, transform.position.z), Vector3.down, hit, 10, 1) && hit.collider != null)
 	{
 		transform.position.x -= MOVE_DIST;
 		//GameObject.Find("Player Sword").transform.position.x -= MOVE_DIST;
@@ -80,7 +105,7 @@ function Update ()
 		if (firstFrame)
 		hasMoved = true;
 	}
-	if (Input.GetAxis("Vertical") == 1 && moveTimer > moveRate && Physics.Raycast (Vector3(transform.position.x, 5, transform.position.z + MOVE_DIST), Vector3.down, hit, 10, 1) && hit.collider != null)
+	if (Input.GetAxisRaw("Vertical") == 1 && moveTimer > moveRate && Physics.Raycast (Vector3(transform.position.x, 5, transform.position.z + MOVE_DIST), Vector3.down, hit, 10, 1) && hit.collider != null)
 	{
 		transform.position.z += MOVE_DIST;
 		//GameObject.Find("Player Sword").transform.position.z += MOVE_DIST;
@@ -100,7 +125,7 @@ function Update ()
 		if (firstFrame)
 		hasMoved = true;
 	}
-	else if (Input.GetAxis("Vertical") == -1 && moveTimer > moveRate && Physics.Raycast (Vector3(transform.position.x, 5, transform.position.z - MOVE_DIST), Vector3.down, hit, 10, 1) && hit.collider != null)
+	else if (Input.GetAxisRaw("Vertical") == -1 && moveTimer > moveRate && Physics.Raycast (Vector3(transform.position.x, 5, transform.position.z - MOVE_DIST), Vector3.down, hit, 10, 1) && hit.collider != null)
 	{
 		transform.position.z -= MOVE_DIST;
 		//GameObject.Find("Player Sword").transform.position.z -= MOVE_DIST;
@@ -120,7 +145,7 @@ function Update ()
 		if (firstFrame)
 		hasMoved = true;
 	}
-	if (Input.GetAxis("Diagonal45") == 1 && moveTimer > moveRate && Physics.Raycast (Vector3(transform.position.x + MOVE_DIST, 5, transform.position.z + MOVE_DIST), Vector3.down, hit, 10, 1) && hit.collider != null)
+	if (Input.GetAxisRaw("Diagonal45") == 1 && moveTimer > moveRate && Physics.Raycast (Vector3(transform.position.x + MOVE_DIST, 5, transform.position.z + MOVE_DIST), Vector3.down, hit, 10, 1) && hit.collider != null)
 	{
 		transform.position.x += MOVE_DIST;
 		transform.position.z += MOVE_DIST;
@@ -142,7 +167,7 @@ function Update ()
 		if (firstFrame)
 		hasMoved = true;
 	}
-	else if (Input.GetAxis("Diagonal45") == -1 && moveTimer > moveRate && Physics.Raycast (Vector3(transform.position.x - MOVE_DIST, 5, transform.position.z - MOVE_DIST), Vector3.down, hit, 10, 1) && hit.collider != null)
+	else if (Input.GetAxisRaw("Diagonal45") == -1 && moveTimer > moveRate && Physics.Raycast (Vector3(transform.position.x - MOVE_DIST, 5, transform.position.z - MOVE_DIST), Vector3.down, hit, 10, 1) && hit.collider != null)
 	{
 		transform.position.x -= MOVE_DIST;
 		transform.position.z -= MOVE_DIST;
@@ -164,7 +189,7 @@ function Update ()
 		if (firstFrame)
 		hasMoved = true;
 	}
-	if (Input.GetAxis("Diagonal315") == 1 && moveTimer > moveRate && Physics.Raycast (Vector3(transform.position.x + MOVE_DIST, 5, transform.position.z - MOVE_DIST), Vector3.down, hit, 10, 1) && hit.collider != null)
+	if (Input.GetAxisRaw("Diagonal315") == 1 && moveTimer > moveRate && Physics.Raycast (Vector3(transform.position.x + MOVE_DIST, 5, transform.position.z - MOVE_DIST), Vector3.down, hit, 10, 1) && hit.collider != null)
 	{
 		transform.position.x += MOVE_DIST;
 		transform.position.z -= MOVE_DIST;
@@ -186,7 +211,7 @@ function Update ()
 		if (firstFrame)
 		hasMoved = true;
 	}
-	else if (Input.GetAxis("Diagonal315") == -1 && moveTimer > moveRate && Physics.Raycast (Vector3(transform.position.x - MOVE_DIST, 5, transform.position.z + MOVE_DIST), Vector3.down, hit, 10, 1) && hit.collider != null)
+	else if (Input.GetAxisRaw("Diagonal315") == -1 && moveTimer > moveRate && Physics.Raycast (Vector3(transform.position.x - MOVE_DIST, 5, transform.position.z + MOVE_DIST), Vector3.down, hit, 10, 1) && hit.collider != null)
 	{
 		transform.position.x -= MOVE_DIST;
 		transform.position.z += MOVE_DIST;
@@ -209,7 +234,7 @@ function Update ()
 		hasMoved = true;
 	}
 	}
-	if (Input.GetAxis("Rotate") == 1 && moveTimer > moveRate && (hasMoved || (!hasMoved && !firstFrame)))
+	if (Input.GetAxisRaw("Rotate") == 1 && moveTimer > moveRate && (hasMoved || (!hasMoved && !firstFrame)))
 	{
 		if (GameObject.Find("Player Sword").transform.position == Vector3(transform.position.x - MOVE_DIST, transform.position.y, transform.position.z))
 		{
@@ -259,7 +284,7 @@ function Update ()
 			GameObject.Find("Text").GetComponent(Shrink).enabled = true;
 		}
 	}
-	else if (Input.GetAxis("Rotate") == -1 && moveTimer > moveRate && (hasMoved || (!hasMoved && !firstFrame)))
+	else if (Input.GetAxisRaw("Rotate") == -1 && moveTimer > moveRate && (hasMoved || (!hasMoved && !firstFrame)))
 	{
 		if (GameObject.Find("Player Sword").transform.position == Vector3(transform.position.x - MOVE_DIST, transform.position.y, transform.position.z))
 		{
@@ -309,7 +334,7 @@ function Update ()
 			GameObject.Find("Text").GetComponent(Shrink).enabled = true;
 		}
 	}
-	if (Input.GetAxis("Zoom") == 1 && canZoom)
+	if (Input.GetAxisRaw("Zoom") == 1 && canZoom)
 	{
 		gos = GameObject.FindGameObjectsWithTag("MainCamera");
 		var go = GameObject.FindGameObjectWithTag("MainCamera");
@@ -326,16 +351,8 @@ function Update ()
 			go.camera.enabled = false;
 		canZoom = false;
 	}
-	else if (Input.GetAxis("Zoom") == 0)
+	else if (Input.GetAxisRaw("Zoom") == 0)
 		canZoom = true;
-	if (Input.GetAxis("Pause") == 1)
-	{
-		PlayerPrefs.SetInt("HP", hp);
-		PlayerPrefs.SetInt("Max HP", maxHP);
-		PlayerPrefs.SetString("Has Bow", "" + bowTextOver);
-		if (GameObject.Find("Player Graphics").GetComponent(Bow) != null)
-			PlayerPrefs.SetInt("Arrows", GameObject.Find("Player Graphics").GetComponent(Bow).arrows);
-	}
 }
 
 // The position on of the scrolling viewport
@@ -370,24 +387,38 @@ function OnGUI ()
 	}
 	else if (hasMoved)
 	{
-		// An absolute-positioned example: We make a scrollview that has a really large client
-		// rect and put it in a small rect on the screen.
 		scrollPosition = GUI.BeginScrollView (Rect (Screen.width / 2 - 375, Screen.height - 150, 750, 150),
 			scrollPosition, Rect (0, 0, 725, 150));
-		
-		// Make four buttons - one in each corner. The coordinate system is defined
-		// by the last parameter to BeginScrollView.
-		//GUI.backgroundColor = Color.gray;
-		GUI.color = Color.green;
+			GUI.color = Color.green;
 		GUI.Box(Rect(0, 0, 725, 25), "Hold [Q] or [W] to rotate your sword");
-		// End the scroll view that we began above.
-		GUI.EndScrollView ();
+			GUI.EndScrollView ();
 	}
 	else
 	{
-		GUI.skin = guiSkin;
 		GUI.color = Color.black;
 		GUI.Label (Rect (10, 10, 500, 40), "Health: " + hp + " / " + maxHP);
+		if (inPauseMenu)
+		{
+			GUI.backgroundColor = Color.black;
+			GUI.color = Color.white;
+			if (GUI.Button(Rect(Screen.width / 2 - 50, Screen.height / 2 - 150, 100, 25), "Save"))
+			{
+				PlayerPrefs.SetInt("HP", hp);
+				PlayerPrefs.SetInt("Max HP", maxHP);
+				PlayerPrefs.SetString("Has Bow", "" + bowTextOver);
+				if (GameObject.Find("Player Graphics").GetComponent(Bow) != null)
+					PlayerPrefs.SetInt("Arrows", GameObject.Find("Player Graphics").GetComponent(Bow).arrows);
+				PlayerPrefs.SetInt("Scene", Application.loadedLevel);
+				PlayerPrefs.SetInt("X", transform.position.x);
+				PlayerPrefs.SetInt("Z", transform.position.z);
+			}
+			var button = GUI.Button(Rect(Screen.width / 2 - 50, Screen.height / 2 - 100, 100, 25), GUIContent("Reset Data", "Requires game restart. If you press this by accident, then save before you next restart."));
+			GUI.color = Color.yellow;
+			GUI.skin = guiSkin;
+			GUI.Label (Rect(Screen.width / 2 - 425, Screen.height / 2 - 75, 1000, 30), GUI.tooltip);
+			if (button)
+				PlayerPrefs.DeleteAll();
+		}
 	}
 	if (showBowText)
 	{
@@ -405,7 +436,7 @@ function OnGUI ()
 		GUI.Box(Rect(0, 25, 725, 25), "Press [2] to switch from using your sword to using your bow");
 		// End the scroll view that we began above.
 		GUI.EndScrollView ();
-		if (Input.GetAxis("Ranged") == 1)
+		if (Input.GetAxisRaw("Ranged") == 1)
 		{
 			showBowText2 = true;
 			showBowText = false;
@@ -429,7 +460,7 @@ function OnGUI ()
 		GUI.Box(Rect(0, 25, 725, 25), "Hold [1] to switch back to using your sword (cannot be done untill you are ready to shoot the next arrow)");
 		// End the scroll view that we began above.
 		GUI.EndScrollView ();
-		if (Input.GetAxis("Sword") == 1)
+		if (Input.GetAxisRaw("Sword") == 1)
 		{
 			showBowText3 = false;
 			bowTextOver = true;

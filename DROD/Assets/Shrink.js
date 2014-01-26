@@ -11,13 +11,13 @@ function Start ()
 
 function Update ()
 {
+	if (GameObject.Find("Player").GetComponent(PlayerBehavior).inPauseMenu)
+		return;
 	delayTimer ++;
-	if (delayTimer > delayDeadline)
+	if (delayTimer > delayDeadline && transform.lossyScale.x > 0)
 	{
 		transform.localScale.x -= shrinkRate;
 		transform.localScale.y -= shrinkRate;
 		transform.localScale.z -= shrinkRate;
-		if (transform.lossyScale.x <= 0)
-			gameObject.active = false;
 	}
 }

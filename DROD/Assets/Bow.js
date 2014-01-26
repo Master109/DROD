@@ -19,13 +19,13 @@ function Start ()
 
 function Update ()
 {
-	if (!canControl || arrows <= 0 || GameObject.Find("Player Sword").collider.enabled)
+	if (!canControl || arrows <= 0 || GameObject.Find("Player Sword").collider.enabled || GameObject.Find("Player").GetComponent(PlayerBehavior).inPauseMenu)
 		return;
 	shootTimer ++;
 	if (shootTimer > shootRate)
 	{
 	GameObject.Find("Player Graphics").GetComponent(SwitchItems).shouldUseSword2 = true;
-	if (Input.GetAxis("ShootHorizontal") == 1)
+	if (Input.GetAxisRaw("ShootHorizontal") == 1)
 	{
 		go = GameObject.Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, 90));
 		go.GetComponent(Bullet).shooter = gameObject;
@@ -36,7 +36,7 @@ function Update ()
 		arrows --; GameObject.Find("Player").GetComponent(PlayerBehavior).showBowText3 = true;
 		shootTimer = 0;
 	}
-	else if (Input.GetAxis("ShootHorizontal") == -1)
+	else if (Input.GetAxisRaw("ShootHorizontal") == -1)
 	{
 		go = GameObject.Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, 90));
 		go.GetComponent(Bullet).shooter = gameObject;
@@ -47,7 +47,7 @@ function Update ()
 		arrows --; GameObject.Find("Player").GetComponent(PlayerBehavior).showBowText3 = true;
 		shootTimer = 0;
 	}
-	else if (Input.GetAxis("ShootVertical") == 1)
+	else if (Input.GetAxisRaw("ShootVertical") == 1)
 	{
 		go = GameObject.Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, 90));
 		go.GetComponent(Bullet).shooter = gameObject;
@@ -58,7 +58,7 @@ function Update ()
 		arrows --; GameObject.Find("Player").GetComponent(PlayerBehavior).showBowText3 = true;
 		shootTimer = 0;
 	}
-	else if (Input.GetAxis("ShootVertical") == -1)
+	else if (Input.GetAxisRaw("ShootVertical") == -1)
 	{
 		go = GameObject.Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, 90));
 		go.GetComponent(Bullet).shooter = gameObject;
@@ -69,7 +69,7 @@ function Update ()
 		arrows --; GameObject.Find("Player").GetComponent(PlayerBehavior).showBowText3 = true;
 		shootTimer = 0;
 	}
-	else if (Input.GetAxis("ShootDiagonal45") == 1)
+	else if (Input.GetAxisRaw("ShootDiagonal45") == 1)
 	{
 		go = GameObject.Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, 90));
 		go.GetComponent(Bullet).shooter = gameObject;
@@ -80,7 +80,7 @@ function Update ()
 		arrows --; GameObject.Find("Player").GetComponent(PlayerBehavior).showBowText3 = true;
 		shootTimer = 0;
 	}
-	else if (Input.GetAxis("ShootDiagonal45") == -1)
+	else if (Input.GetAxisRaw("ShootDiagonal45") == -1)
 	{
 		go = GameObject.Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, 90));
 		go.GetComponent(Bullet).shooter = gameObject;
@@ -91,7 +91,7 @@ function Update ()
 		arrows --; GameObject.Find("Player").GetComponent(PlayerBehavior).showBowText3 = true;
 		shootTimer = 0;
 	}
-	else if (Input.GetAxis("ShootDiagonal315") == 1)
+	else if (Input.GetAxisRaw("ShootDiagonal315") == 1)
 	{
 		go = GameObject.Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, 90));
 		go.GetComponent(Bullet).shooter = gameObject;
@@ -102,7 +102,7 @@ function Update ()
 		arrows --; GameObject.Find("Player").GetComponent(PlayerBehavior).showBowText3 = true;
 		shootTimer = 0;
 	}
-	else if (Input.GetAxis("ShootDiagonal315") == -1)
+	else if (Input.GetAxisRaw("ShootDiagonal315") == -1)
 	{
 		go = GameObject.Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, 90));
 		go.GetComponent(Bullet).shooter = gameObject;

@@ -103,10 +103,10 @@ function OnGUI ()
 		GUI.Box(Rect(0, 125, 725, 25), "Anyway, please hand over your weapons.'");
 		GUI.Box(Rect(0, 150, 725, 25), "Without warning, you say, 'Like hell that's happening!'");
 		GUI.color = Color.cyan;
-		GUI.Box(Rect(0, 175, 725, 25), "Abruptly, they both fall asleep");
+		GUI.Box(Rect(0, 175, 725, 25), "Abruptly, they both fall limp");
 		GUI.color = Color.green;
 		GUI.Box(Rect(0, 200, 725, 25), "Press [SPACE] to continue");
-		if (Input.GetAxis("ContinueDialog") == 1)
+		if (Input.GetAxisRaw("ContinueDialog") == 1)
 		{
 			Destroy(gameObject);
 			gos = GameObject.FindGameObjectsWithTag("Character");
