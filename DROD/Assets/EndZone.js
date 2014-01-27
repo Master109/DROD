@@ -79,7 +79,7 @@ function AreaChange ()
 		else if (sceneID > -1)
 		{
 			Application.DontDestroyOnLoad(GameObject.Find("Player"));
-			Application.DontDestroyOnLoad(GameObject.Find("MainCamera"));
+			Application.DontDestroyOnLoad(GameObject.Find("Main Camera"));
 			Application.LoadLevel(sceneID);
 		}
 	}
