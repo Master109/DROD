@@ -49,7 +49,7 @@ function AreaChange ()
 								else if (go4.name == "SkeletonArcher")
 									go4.GetComponent(SkeletonArcher).paused = false;
 							}
-						gos = GameObject.FindGameObjectsWithTag("Bullet");
+						gos = GameObject.FindGameObjectsWithTag("Projectile");
 						for (var go6 : GameObject in gos)
 							if (go6.transform.position.x > (go3.transform.position.x + go3.GetComponent(BoxCollider).center.x) - go3.GetComponent(BoxCollider).size.x / 2 && go6.transform.position.x < (go3.transform.position.x + go3.GetComponent(BoxCollider).center.x) + go3.GetComponent(BoxCollider).size.x / 2 && go6.transform.position.z > (go3.transform.position.z + go3.GetComponent(BoxCollider).center.z) - go3.GetComponent(BoxCollider).size.z / 2 && go6.transform.position.z < (go3.transform.position.z + go3.GetComponent(BoxCollider).center.z) + go3.GetComponent(BoxCollider).size.z / 2)
 								go6.GetComponent(Bullet).paused = false;
@@ -65,7 +65,7 @@ function AreaChange ()
 								else if (go5.name == "SkeletonArcher")
 									go5.GetComponent(SkeletonArcher).paused = true;
 							}
-						gos = GameObject.FindGameObjectsWithTag("Bullet");
+						gos = GameObject.FindGameObjectsWithTag("Projectile");
 						for (var go6 : GameObject in gos)
 							if (go6.transform.position.x > (go3.transform.position.x + go3.GetComponent(BoxCollider).center.x) - go3.GetComponent(BoxCollider).size.x / 2 && go6.transform.position.x < (go3.transform.position.x + go3.GetComponent(BoxCollider).center.x) + go3.GetComponent(BoxCollider).size.x / 2 && go6.transform.position.z > (go3.transform.position.z + go3.GetComponent(BoxCollider).center.z) - go3.GetComponent(BoxCollider).size.z / 2 && go6.transform.position.z < (go3.transform.position.z + go3.GetComponent(BoxCollider).center.z) + go3.GetComponent(BoxCollider).size.z / 2)
 								go6.GetComponent(Bullet).paused = true;
@@ -79,7 +79,7 @@ function AreaChange ()
 		else if (sceneID > -1)
 		{
 			Application.DontDestroyOnLoad(GameObject.Find("Player"));
-			Application.DontDestroyOnLoad(GameObject.Find("MainCamera"));
+			Application.DontDestroyOnLoad(GameObject.Find("Main Camera"));
 			Application.LoadLevel(sceneID);
 		}
 	}

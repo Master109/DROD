@@ -228,7 +228,7 @@ function Update ()
 			else
 		for (var i9 = 2; i9 <= range; i9 ++)
 			{
-			if (Physics.Raycast (Vector3(vector2.x, 5, vector2.z), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Player Sword" || hit.collider.gameObject.name == "Player Graphics"))
+			if (Physics.Raycast (Vector3(vector2.x, 5, vector2.z), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy")
 			{
 			vector2.x -= MOVE_DIST;
 			vector2.z -= MOVE_DIST;
