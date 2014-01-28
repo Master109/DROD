@@ -80,19 +80,12 @@ function OnGUI ()
 {
 	if (!awoken)
 		return;
-	GameObject.Find("Player").GetComponent(PlayerBehavior).paused = true;
-	GUI.skin = guiSkin2;
-		//GUI.color = Color.black;
-		//GUI.Box(Rect(0, 0, 1000, 25), "THIS GAME IS BARELY IN ITS BEGGINING STAGES -- NO TROLLING");
-		//GUI.Box(Rect(0, 25, 1000, 25), "RIGHT CLICK AND PRESS 'GO FULLSCREEN' FOR NO LAG");
-		// An absolute-positioned example: We make a scrollview that has a really large client
-		// rect and put it in a small rect on the screen.
+	if (id == 1)
+	{
+		GameObject.Find("Player").GetComponent(PlayerBehavior).paused = true;
+		GUI.skin = guiSkin2;
 		scrollPosition = GUI.BeginScrollView (Rect (Screen.width / 2 - 375, Screen.height - 150, 750, 150),
 			scrollPosition, Rect (0, 0, 725, 275));
-		
-		// Make four buttons - one in each corner. The coordinate system is defined
-		// by the last parameter to BeginScrollView.
-		//GUI.backgroundColor = Color.gray;
 		GUI.color = Color.cyan;
 		GUI.Box(Rect(0, 0, 725, 25), "There are two guards standing ahead of you");
 		GUI.Box(Rect(0, 25, 725, 25), "Behind them is a lowered drawbridge and a portcullis");
@@ -108,8 +101,13 @@ function OnGUI ()
 		GUI.Box(Rect(0, 225, 725, 25), "Awhile later....");
 		GUI.color = Color.green;
 		GUI.Box(Rect(0, 250, 725, 25), "Press [SPACE] to continue");
-		Application.DontDestroyOnLoad(GameObject.Find("Player"));
-		Application.DontDestroyOnLoad(GameObject.Find("Main Camera"));
-		Application.LoadLevel(2);
 		GUI.EndScrollView ();
+		if (Input.GetAxisRaw("ContinueDialog") == 1)
+		{
+			Application.DontDestroyOnLoad(GameObject.Find("Player"));
+			Application.DontDestroyOnLoad(GameObject.Find("Main Camera"));
+			Application.LoadLevel(2);
+			GameObject.Find("Player").GetComponent(PlayerBehavior).paused = false;
+		}
+	}
 }

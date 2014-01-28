@@ -48,6 +48,7 @@
      <Compile Include="Assets\Bow.js" />
      <Compile Include="Assets\Bullet.js" />
      <Compile Include="Assets\Character.js" />
+     <Compile Include="Assets\Cutscene.js" />
      <Compile Include="Assets\EndZone.js" />
      <Compile Include="Assets\PlayerBehavior.js" />
      <Compile Include="Assets\RoachBehavior.js" />
