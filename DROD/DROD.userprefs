@@ -1,10 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\SkeletonArcher.js">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Character.js">
     <Files>
-      <File FileName="Assets\EndZone.js" Line="30" Column="60" />
-      <File FileName="Assets\PlayerBehavior.js" Line="486" Column="2" />
-      <File FileName="Assets\SkeletonArcher.js" Line="240" Column="18" />
+      <File FileName="Assets\EndZone.js" Line="43" Column="56" />
+      <File FileName="Assets\PlayerBehavior.js" Line="1" Column="1" />
+      <File FileName="Assets\SkeletonArcher.js" Line="1" Column="1" />
+      <File FileName="Assets\Character.js" Line="107" Column="48" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -88,7 +88,7 @@ function OnGUI ()
 		// An absolute-positioned example: We make a scrollview that has a really large client
 		// rect and put it in a small rect on the screen.
 		scrollPosition = GUI.BeginScrollView (Rect (Screen.width / 2 - 375, Screen.height - 150, 750, 150),
-			scrollPosition, Rect (0, 0, 725, 225));
+			scrollPosition, Rect (0, 0, 725, 275));
 		
 		// Make four buttons - one in each corner. The coordinate system is defined
 		// by the last parameter to BeginScrollView.
@@ -99,22 +99,17 @@ function OnGUI ()
 		GUI.Box(Rect(0, 50, 725, 25), "Through the portcullis you see a crowded city with large looming buildings in the distance");
 		GUI.color = Color.magenta;
 		GUI.Box(Rect(0, 75, 725, 25), "'Ho!' they say as you approach them");
-		GUI.Box(Rect(0, 100, 725, 25), "'Nice to see another face -- we haven't got anybody going in or out for a while.");
-		GUI.Box(Rect(0, 125, 725, 25), "Anyway, please hand over your weapons.'");
-		GUI.Box(Rect(0, 150, 725, 25), "Without warning, you say, 'Like hell that's happening!'");
+		GUI.Box(Rect(0, 100, 725, 25), "'Nice to see another face -- we haven't got anybody going in or out for a while.'");
+		GUI.Box(Rect(0, 125, 725, 25), "'Anyway, please hand over your weapons.'");
+		GUI.Box(Rect(0, 150, 725, 25), "Without warning, you say, 'Like hell that's happening.'");
 		GUI.color = Color.cyan;
 		GUI.Box(Rect(0, 175, 725, 25), "Abruptly, they both fall limp");
+		GUI.Box(Rect(0, 200, 725, 25), "You instantly levitate one of the guards out of view and, after walking over to him, change into his clothes");
+		GUI.Box(Rect(0, 225, 725, 25), "Awhile later....");
 		GUI.color = Color.green;
-		GUI.Box(Rect(0, 200, 725, 25), "Press [SPACE] to continue");
-		if (Input.GetAxisRaw("ContinueDialog") == 1)
-		{
-			Destroy(gameObject);
-			gos = GameObject.FindGameObjectsWithTag("Character");
-			for (var go : GameObject in gos)
-				if (go.GetComponent(Character).id == 2)
-					Destroy(go);
-			GameObject.Find("Player").GetComponent(PlayerBehavior).paused = false;
-		}
-		// End the scroll view that we began above.
+		GUI.Box(Rect(0, 250, 725, 25), "Press [SPACE] to continue");
+		Application.DontDestroyOnLoad(GameObject.Find("Player"));
+		Application.DontDestroyOnLoad(GameObject.Find("Main Camera"));
+		Application.LoadLevel(2);
 		GUI.EndScrollView ();
 }
