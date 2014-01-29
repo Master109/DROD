@@ -8,6 +8,8 @@ var attackTimer = 125;
 var attackRate = 125;
 var playerAttackTimer = 100;
 var playerAttackRate = 100;
+var shootRate = 50;
+var shootTimer = 0;
 var awoken = false;
 var awakeRadius = 3;
 var hit : RaycastHit;
@@ -15,6 +17,8 @@ var paused = true;
 var guiSkin2 : GUISkin;
 var id = 0;
 var gos : GameObject[];
+var go : GameObject;
+var bullet : GameObject;
 
 function Start ()
 {
@@ -23,7 +27,29 @@ function Start ()
 
 function Update ()
 {
-	
+	if (paused)
+		return;
+	shootTimer ++;
+	if (shootTimer > shootRate)
+	{
+		go = GameObject.Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, 90));
+		go.GetComponent(Bullet).vel = Vector3(-MOVE_DIST, 0, 0);
+		go = GameObject.Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, 90));
+		go.GetComponent(Bullet).vel = Vector3(MOVE_DIST, 0, 0);
+		go = GameObject.Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, 90));
+		go.GetComponent(Bullet).vel = Vector3(0, 0, -MOVE_DIST);
+		go = GameObject.Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, 90));
+		go.GetComponent(Bullet).vel = Vector3(0, 0, MOVE_DIST);
+		go = GameObject.Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, 90));
+		go.GetComponent(Bullet).vel = Vector3(-MOVE_DIST, 0, -MOVE_DIST);
+		go = GameObject.Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, 90));
+		go.GetComponent(Bullet).vel = Vector3(-MOVE_DIST, 0, MOVE_DIST);
+		go = GameObject.Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, 90));
+		go.GetComponent(Bullet).vel = Vector3(MOVE_DIST, 0, -MOVE_DIST);
+		go = GameObject.Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, 90));
+		go.GetComponent(Bullet).vel = Vector3(MOVE_DIST, 0, MOVE_DIST);
+		shootTimer = 0;
+	}
 }
 
 function CheckForPlayer ()
@@ -107,7 +133,9 @@ function OnGUI ()
 			Application.DontDestroyOnLoad(GameObject.Find("Player"));
 			Application.DontDestroyOnLoad(GameObject.Find("Main Camera"));
 			Application.LoadLevel(2);
-			GameObject.Find("Player").GetComponent(PlayerBehavior).paused = false;
+			GameObject.Find("Player").GetComponent(PlayerBehavior).paused = true;
+			GameObject.Find("Player").GetComponent(Cutscene).active = true;
+			GameObject.Find("Player Sword").active = false;
 		}
 	}
 }

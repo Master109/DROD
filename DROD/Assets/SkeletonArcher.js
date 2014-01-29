@@ -106,7 +106,7 @@ function Update ()
 			else
 			for (var i2 = 2; i2 <= range; i2 ++)
 			{
-			if (Physics.Raycast (Vector3(vector2.x, 5, vector2.z), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Player Sword" || hit.collider.gameObject.name == "Player Graphics"))
+			if (Physics.Raycast (Vector3(vector2.x, 5, vector2.z), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy")
 			{
 			vector2.x -= MOVE_DIST;
 			if (vector2 == GameObject.Find("Player Graphics").transform.position)
@@ -136,7 +136,7 @@ function Update ()
 			else
 		for (var i3 = 2; i3 <= range; i3 ++)
 			{
-			if (Physics.Raycast (Vector3(vector2.x, 5, vector2.z), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Player Sword" || hit.collider.gameObject.name == "Player Graphics"))
+			if (Physics.Raycast (Vector3(vector2.x, 5, vector2.z), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy")
 			{
 			vector2.x += MOVE_DIST;
 			if (vector2 == GameObject.Find("Player Graphics").transform.position)
@@ -166,7 +166,7 @@ function Update ()
 			else
 		for (var i4 = 2; i4 <= range; i4 ++)
 			{
-			if (Physics.Raycast (Vector3(vector2.x, 5, vector2.z), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Player Sword" || hit.collider.gameObject.name == "Player Graphics"))
+			if (Physics.Raycast (Vector3(vector2.x, 5, vector2.z), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy")
 			{
 			vector2.z -= MOVE_DIST;
 			if (vector2 == GameObject.Find("Player Graphics").transform.position)
@@ -196,7 +196,7 @@ function Update ()
 			else
 		for (var i5 = 2; i5 <= range; i5 ++)
 			{
-			if (Physics.Raycast (Vector3(vector2.x, 5, vector2.z), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Player Sword" || hit.collider.gameObject.name == "Player Graphics"))
+			if (Physics.Raycast (Vector3(vector2.x, 5, vector2.z), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy")
 			{
 			vector2.z += MOVE_DIST;
 			if (vector2 == GameObject.Find("Player Graphics").transform.position)
@@ -261,7 +261,7 @@ function Update ()
 			else
 		for (var i6 = 2; i6 <= range; i6 ++)
 			{
-			if (Physics.Raycast (Vector3(vector2.x, 5, vector2.z), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Player Sword" || hit.collider.gameObject.name == "Player Graphics"))
+			if (Physics.Raycast (Vector3(vector2.x, 5, vector2.z), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" )
 			{
 			vector2.x += MOVE_DIST;
 			vector2.z -= MOVE_DIST;
@@ -293,7 +293,7 @@ function Update ()
 			else
 		for (var i7 = 2; i7 <= range; i7 ++)
 			{
-			if (Physics.Raycast (Vector3(vector2.x, 5, vector2.z), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Player Sword" || hit.collider.gameObject.name == "Player Graphics"))
+			if (Physics.Raycast (Vector3(vector2.x, 5, vector2.z), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy")
 			{
 			vector2.x += MOVE_DIST;
 			vector2.z += MOVE_DIST;
@@ -326,7 +326,7 @@ function Update ()
 			else
 		for (var i8 = 2; i8 <= range; i8 ++)
 			{
-			if (Physics.Raycast (Vector3(vector2.x, 5, vector2.z), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy" && (hit.collider.gameObject.name == "Player Sword" || hit.collider.gameObject.name == "Player Graphics"))
+			if (Physics.Raycast (Vector3(vector2.x, 5, vector2.z), Vector3.down, hit, 10) && hit.collider.gameObject.tag != "Enemy")
 			{
 			vector2.x -= MOVE_DIST;
 			vector2.z += MOVE_DIST;
